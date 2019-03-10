@@ -3,9 +3,10 @@ package com.company;
 import java.util.*;
 
 public class Heap {
-    Vector data;
+    private Vector<Double> data;
 
-    public Heap(Vector data) {
+    public Heap(Vector<Double> data)
+    {
         this.data = data;
         for (int j = data.size() / 2; j >= 0; j--) {
             heapify(j, data.size());
@@ -19,13 +20,13 @@ public class Heap {
     public void heapify(int i, int end) {
         int largest = i, left = 2 * i + 1, right = 2 * i + 2;
         double buf;
-        if (left < end && (double) data.elementAt(left) > (double) data.elementAt(largest))
+        if (left < end && data.elementAt(left) > data.elementAt(largest))
             largest = left;
-        if (right < end && (double) data.elementAt(right) > (double) data.elementAt(largest))
+        if (right < end && data.elementAt(right) > data.elementAt(largest))
             largest = right;
         if (largest == i)
             return;
-        buf = (double) data.elementAt(i);
+        buf = data.elementAt(i);
         data.setElementAt(data.elementAt(largest), i);
         data.setElementAt(buf, largest);
         heapify(largest, end);
@@ -60,8 +61,8 @@ public class Heap {
         double buf;
         for (int i = end / 2 - 1; i >= 0; i--)
             heapify(i, end);
-        buf = (double) data.elementAt(0);
-        data.setElementAt((double) data.elementAt(end - 1), 0);
+        buf = data.elementAt(0);
+        data.setElementAt(data.elementAt(end - 1), 0);
         data.setElementAt(buf, end - 1);
         heapSort(end - 1);
     }
