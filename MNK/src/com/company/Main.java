@@ -12,7 +12,7 @@ public class Main {
         {
             Pre[] fun = new Pre[]{
                     x -> Math.log(x*x),
-                    x -> Math.log(x)};
+                    Math::log};
             System.out.println("Длина векторов X:");
             int m=in.nextInt();
             double[][] x=new double[m][2];
