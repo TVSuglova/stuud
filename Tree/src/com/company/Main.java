@@ -11,11 +11,13 @@ public class Main {
         double[] key = new double[n];
         for (int i=0; i<n; i++)
         {
-            key[i]=in.nextDouble();
+            key[i] = in.nextDouble();
         }
         Tree A = new Tree (key);
         System.out.println(A.getRoot());
         System.out.println("\nВведите элемент для удаления:");
         System.out.println(A.delete(in.nextDouble()));
+        System.out.println("\nВведите элемент для поиска:");
+        System.out.println(A.search(in.nextDouble()));
     }
 }
