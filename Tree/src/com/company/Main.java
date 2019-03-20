@@ -17,7 +17,14 @@ public class Main {
         System.out.println(A.getRoot());
         System.out.println("\nВведите элемент для удаления:");
         System.out.println(A.delete(in.nextDouble()));
-        System.out.println("\nВведите элемент для поиска:");
-        System.out.println(A.search(in.nextDouble()));
+        System.out.println(A.getRoot());
+        System.out.println("\nВведите элемент для добавления:");
+        A.add(in.nextDouble());
+        System.out.println(A.getRoot());
+        System.out.println("\nВведите элемент для добавления:");
+        A.add(in.nextDouble());
+        System.out.println(A.getRoot());
+        /*System.out.println("\nВведите элемент для поиска:");
+        System.out.println(A.search(in.nextDouble()));*/
     }
 }
