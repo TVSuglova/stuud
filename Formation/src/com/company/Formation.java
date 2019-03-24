@@ -24,22 +24,34 @@ public class Formation
             System.out.println(root.key);
         } catch (NullPointerException ex)
         {
-            System.out.println(ex.getMessage());
+            System.out.println("NullPointerException" + ex.getMessage());
+        }
+        try
+        {
+            double[] a = new double[5];
+            for (int i = 0; i <= a.length; i++)
+            {
+                System.out.print("Введите " + (i) + " элемент массива:");
+                a[i] = in.nextDouble();
+            }
+        } catch (IndexOutOfBoundsException ex)
+        {
+            System.out.println("IndexOutOfBoundsException" + ex.getMessage());
         }
         try
         {
             int a = 0, b = 1 / a;
         } catch (ArithmeticException ex)
         {
-            System.out.println(ex.getMessage());
+            System.out.println("ArithmeticException" + ex.getMessage());
         }
         try
         {
             System.out.println("Введите число:");
-            double c = in.nextDouble();
+            double c = Double.parseDouble(in.next());
         } catch (NumberFormatException ex)
         {
-            System.out.println(ex.getMessage());
+            System.out.println("NumberFormatException" + ex.getMessage());
         }
 
         try
@@ -58,7 +70,7 @@ public class Formation
                 }
             } catch (IndexOutOfBoundsException ex)
             {
-                System.out.println(ex.getMessage());
+                System.out.println("IndexOutOfBoundsException" + ex.getMessage());
             }
             try
             {
@@ -67,7 +79,7 @@ public class Formation
                 insert(z, root);
             } catch (IllegalArgumentException ex)
             {
-                System.out.println(ex.getMessage());
+                System.out.println("IllegalArgumentException" + ex.getMessage());
             }
         } catch (NodeBallanceException ex)
         {
