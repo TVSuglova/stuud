@@ -110,7 +110,7 @@ public class Perc2 {
         System.out.println("Êîëè÷åñòâî èòåðàöèé ðàâíî "+m);
         System.out.println("wxh[0][0]="+wxh[0][0]);
         System.out.println("wxh[0][1]="+wxh[0][1]);
-        System.out.println("wxh[1][1]="+wxh[1][0]);
+        System.out.println("wxh[1][0]=" + wxh[1][0]);
         System.out.println("wxh[1][1]="+wxh[1][1]);
         System.out.println("why[0]="+why[0]);
         System.out.println("why[0]="+why[1]);
