@@ -1,55 +1,43 @@
 package com.company;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 import java.util.Vector;
 
 public class Main
 {
-
     public static void main(String[] args)
     {
+        String filename = "Баллы.csv", separator = ";";
+        Vector data = ReadCSV(filename, separator);
+        for (int i = 0; i < data.size(); i += 2)
+            System.out.println(data.elementAt(i) + " " + data.elementAt(i + 1));
+    }
 
-        try
+    public static Vector ReadCSV(String filename, String separator)
+    {
+        File file = new File(filename);
+        Vector data = new Vector<>();
+
+        try (BufferedReader br =
+                     new BufferedReader(new InputStreamReader(new FileInputStream(file))))
         {
-            BufferedReader reader = new BufferedReader(new FileReader("Баллы.csv"));
-            String line = reader.readLine();
-            Scanner scanner;
-            int index = 0;
-            Vector<String> names = new Vector<>();
-            Vector<Integer> points = new Vector<>();
-
-            while ((line = reader.readLine()) != null)
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null)
             {
-                scanner = new Scanner(line);
-                scanner.useDelimiter(";");
-                while (scanner.hasNext())
-                {
-                    String data = scanner.next();
-                    if (index == 0)
-                        names.add(data);
-                    else if (index == 4)
-                    {
-                        points.add(Integer.parseInt(data));
-                    }
-                    index++;
-                }
-                index = 0;
-
+                String[] elements = line.split(separator);
+                data.add(elements[0]);
+                data.add(Integer.parseInt(elements[4]));
             }
-            reader.close();
-            for (int i = 0; i < names.size(); i++)
-                System.out.println(names.elementAt(i) + " " + points.elementAt(i));
-
-        } catch (FileNotFoundException ex)
+        } catch (IOException e)
         {
-            ex.getMessage();
-        } catch (IOException ex)
-        {
-            ex.getMessage();
+            e.printStackTrace();
         }
+        return data;
     }
 }
+
