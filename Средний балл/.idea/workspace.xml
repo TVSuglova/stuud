@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="459dd57b-a18f-4455-8932-e01516ed4334" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../алгоритм Рабина-Карпа/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../алгоритм Рабина-Карпа/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../алгоритм Рабина-Карпа/out/production/алгоритм Рабина-Карпа/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../алгоритм Рабина-Карпа/out/production/алгоритм Рабина-Карпа/com/company/Main.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,13 +28,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="490" />
-          <entry key="txt" value="52" />
+          <entry key="txt" value="155" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="490" />
-          <entry key="PLAIN_TEXT" value="52" />
+          <entry key="PLAIN_TEXT" value="155" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -68,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Interval.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="36" column="58" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
+            <state relative-caret-position="153">
+              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,7 +135,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554472672296" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554472689968" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../алгоритм Рабина-Карпа" />
   </component>
   <component name="RunDashboard">
@@ -211,7 +209,35 @@
       <option name="project" value="LOCAL" />
       <updated>1554030657831</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Поиск подстроки в строке">
+      <created>1554472633746</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1554472633746</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Считывание из файла">
+      <created>1554472669455</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1554472669455</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Считывание из файла">
+      <created>1554472685868</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1554472685868</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Метод прогонки, конечно-разностная схема">
+      <created>1554472745626</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1554472745626</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -253,7 +279,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Модуль 3" />
     <MESSAGE value="Считывание из файла(Scanner)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Считывание из файла(Scanner)" />
+    <MESSAGE value="Поиск подстроки в строке" />
+    <MESSAGE value="Считывание из файла" />
+    <MESSAGE value="Метод прогонки, конечно-разностная схема" />
+    <option name="LAST_COMMIT_MESSAGE" value="Метод прогонки, конечно-разностная схема" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -276,8 +305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Interval.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="36" column="58" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
+        <state relative-caret-position="153">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
