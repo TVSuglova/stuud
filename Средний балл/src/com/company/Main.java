@@ -19,11 +19,9 @@ public class Main
 
     public static Vector ReadCSV(String filename, String separator)
     {
-        File file = new File(filename);
         Vector data = new Vector<>();
-
         try (BufferedReader br =
-                     new BufferedReader(new InputStreamReader(new FileInputStream(file))))
+                     new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename)))))
         {
             String line;
             br.readLine();
