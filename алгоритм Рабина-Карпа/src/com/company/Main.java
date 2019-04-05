@@ -24,25 +24,26 @@ public class Main
 
     static int RabinKarp(char[] s, char[] t)
     {
-        long q = 2 ^ 64, x = 301, hashs, hasht = t[0] % q;
+        long q = 2 ^ 64, x = 301, hashs = s[0] % q, hasht = t[0] % q;
         int n = s.length, m = t.length;
-        long[] pow = new long[m + 1];
-        pow[0] = 1;
+        long pow = 1;
+        x %= q;
         for (int i = 1; i < m; i++)
         {
-            pow[i] = pow[i - 1] * x;
-            hasht += (t[i] * pow[i]) % q;
+            pow *= x;
+            hasht += t[i] % q * pow;
+            hashs += s[i] % q * pow;
         }
-        for (int i = 0; i <= n - m; i++)
+        for (int i = 0; i < n - m; i++)
         {
-            hashs = 0;
-            for (int j = 0; j <= m - 1; j++)
-            {
-                hashs += (s[i + j] * pow[j]) % q;
-            }
             if (hashs == hasht)
                 return i;
+            hashs -= s[i] % q;
+            hashs /= x;
+            hashs += s[i + m] % q * pow;
         }
+        if (hashs == hasht)
+            return n - m;
         return -1;
     }
 }
