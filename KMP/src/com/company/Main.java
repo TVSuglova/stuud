@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.Arrays;
 import java.util.Vector;
+import java.util.concurrent.*;
 
 public class Main
 {
@@ -9,11 +10,39 @@ public class Main
     public static void main(String[] args)
     {
         String a = "aaaaaaa";
-        String b = "aaa";
-        System.out.println(Arrays.toString(KnMoPr(a, b).toArray()));
+        String[] b = {"aaa", "fff", "a"};
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        Future[] futures = new Future[b.length];
+        for (int i = 0; i < b.length; i++)
+            futures[i] = executor.submit(new KMP(a, b[i]));
+        try
+        {
+            for (int i = 0; i < b.length; i++)
+                System.out.println(futures[i].get());
+        } catch (InterruptedException | ExecutionException ex)
+        {
+            ex.printStackTrace(System.err);
+        }
+        executor.shutdown();
+    }
+}
+
+class KMP implements Callable<Vector<Integer>>
+{
+    String text, str;
+
+    public KMP(String text, String str)
+    {
+        this.text = text;
+        this.str = str;
     }
 
-    private static Vector<Integer> KnMoPr(String text, String str)
+    public Vector<Integer> call()
+    {
+        return KnMoPr(text, str);
+    }
+
+    public static Vector<Integer> KnMoPr(String text, String str)
     {
         Vector<Integer> index = new Vector<>();
         Vector<Integer> prefix = prefix(str);
@@ -34,7 +63,7 @@ public class Main
         return index;
     }
 
-    public static Vector<Integer> prefix(String str)
+    private static Vector<Integer> prefix(String str)
     {
         int len = str.length();
         Vector<Integer> p = new Vector<>();
