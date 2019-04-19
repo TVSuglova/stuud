@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.Vector;
 import java.util.concurrent.*;
 
@@ -29,7 +28,7 @@ public class Main
 
 class KMP implements Callable<Vector<Integer>>
 {
-    String text, str;
+    private String text, str;
 
     public KMP(String text, String str)
     {
