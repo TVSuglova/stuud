@@ -65,20 +65,20 @@ class KMP implements Callable<Vector<Integer>>
     private static Vector<Integer> prefix(String str)
     {
         int len = str.length();
-        Vector<Integer> p = new Vector<>();
+        Vector<Integer> prefix = new Vector<>();
         for (int i = 0; i < len; ++i)
         {
-            p.add(0);
+            prefix.add(0);
         }
         int j = 0;
         for (int i = 1; i < len; ++i)
         {
             while ((j > 0) && (str.charAt(j) != str.charAt(i)))
-                j = p.get(j - 1);
+                j = prefix.get(j - 1);
             if (str.charAt(j) == str.charAt(i))
                 ++j;
-            p.set(i, j);
+            prefix.set(i, j);
         }
-        return p;
+        return prefix;
     }
 }
