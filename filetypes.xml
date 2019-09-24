@@ -2,6 +2,7 @@
   <component name="FileTypeManager" version="17">
     <extensionMap>
       <mapping ext="rtf" type="AspectJ" />
+      <mapping pattern="Текст" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
