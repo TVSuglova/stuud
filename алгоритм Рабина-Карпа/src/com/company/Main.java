@@ -22,12 +22,8 @@ public class Main
         }
     }
 
-    static int RabinKarp(char[] s, char[] t)
+    static int RabinKarp(char[] text, char[] str)
     {
-        int n = s.length, m = t.length;
-        long q = (long) Math.pow(2, 61) - 1, x = 2, hashs = s[m - 1], hasht = t[m - 1];
-        long pow = 1;
-        for (int i = m - 2; i > -1; i--)
         {
             pow *= x;
             pow %= q;
