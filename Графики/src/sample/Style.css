@@ -1,0 +1,10 @@
+.chart-line-symbol {
+    -fx-background-radius: 0px;
+    -fx-padding: 0px;
+}
+
+.chart-series-line {
+    -fx-stroke: red;
+    -fx-stroke-width: 1px;
+    -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.3) , 8, 0.0 , 0 , 3 );
+}
