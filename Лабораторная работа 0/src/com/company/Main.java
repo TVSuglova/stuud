@@ -22,6 +22,8 @@ public class Main
     }
     public static void print(ArrayList<String> data)
     {
+        int itog1 = 0, itog2 = 0;
+        double itog3 = 0, itog4 = 0;
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("%-3s|%-57s|%-11s|%-56s%n", "№", "                           Слово", " Палиндром", "                 Количество информации");
         System.out.println("    |                                                         |           |----------------------------------------------------------");
@@ -29,9 +31,16 @@ public class Main
         System.out.printf("%-4s|%-57s|%-11s|%-11s|%14s|%14s|%14s%n", " ", " ", " ", " символов", "в программе  ", "по Хартли  ", "по Шенону  ");
         for(int i = 0; i < data.size(); i++)
         {
+            itog1 += data.get(i).length();
+            itog2 += 2 * data.get(i).length();
+            itog3 += Hartly(data.get(i));
+            itog4 += Shenon(data.get(i));
             System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
             System.out.printf("%-4d|%-57s|%-11s|%-11d|%14d|%14.2f|%14.9f%n", i+1, data.get(i), pol(data.get(i)), data.get(i).length(), 2*data.get(i).length(), Hartly(data.get(i)), Shenon(data.get(i)));
         }
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-4s|%-57s|%-11s|%-11d|%14d|%14.2f|%14.9f%n", " ", "ИТОГО", " ", itog1, itog2, itog3, itog4);
+
     }
 
     public static char pol(String string)
