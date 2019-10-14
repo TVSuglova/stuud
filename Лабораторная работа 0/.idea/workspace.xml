@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="60677825-8bac-443e-8d82-2ae845f98ff9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Лабораторная работа 0/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Лабораторная работа 0/com/company/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Лабораторная работа 1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Лабораторная работа 1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Лабораторная работа 1/out/production/Лабораторная работа 1/com/company/Bisection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Лабораторная работа 1/out/production/Лабораторная работа 1/com/company/Bisection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Лабораторная работа 1/out/production/Лабораторная работа 1/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Лабораторная работа 1/out/production/Лабораторная работа 1/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Лабораторная работа 1/out/production/Лабораторная работа 1/com/company/VectStr.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Лабораторная работа 1/out/production/Лабораторная работа 1/com/company/VectStr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Лабораторная работа 2/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Лабораторная работа 2/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Лабораторная работа 2/src/com/company/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Лабораторная работа 2/src/com/company/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Стек/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Стек/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../алгоритм Рабина-Карпа/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../алгоритм Рабина-Карпа/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +23,14 @@
     <session id="607077198">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.191828" value="1" />
           <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.28" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -53,11 +61,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+            <state relative-caret-position="17">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Текст.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -90,11 +98,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="728" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -173,10 +181,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1386" height="788" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27224737" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -229,8 +237,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        <state relative-caret-position="17">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

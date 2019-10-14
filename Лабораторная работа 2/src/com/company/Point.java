@@ -1,6 +1,9 @@
 package com.company;
 
+import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 public class Point
 {
@@ -13,7 +16,7 @@ public class Point
         P.append("(");
         for (int i = 0; i < dim - 1; i++)
         {
-            P.append(x[i]).append(";");
+            P.append(x[i]).append(" ; ");
         }
         P.append(x[dim - 1]).append(")");
         return P.toString();
@@ -194,34 +197,29 @@ class Point2D extends Point
         super(2);
     }
 
-    public Point2D(double[] x)
+    public Point2D(double x, double y)
     {
-        super(2, x);
-    }
-
-    public Point2D clone()
-    {
-        return new Point2D(x);
+        super(2, new double[]{x, y});
     }
 
     public Point2D Rot(double phi)
     {
-        double[] x = new double[2];
-        x[0] = this.x[0] * Math.cos(phi) - this.x[1] * Math.sin(phi);
-        x[1] = this.x[0] * Math.sin(phi) + this.x[1] * Math.cos(phi);
-        return new Point2D(x);
+        return new Point2D(this.x[0] * Math.cos(phi) - this.x[1] * Math.sin(phi), this.x[0] * Math.sin(phi) + this.x[1] * Math.cos(phi));
     }
 }
 
-class BrokenLine
+class BrokenLine implements Iterable
 {
-    protected ArrayList<Point2D> Points;
-
+    private ArrayList<Point2D> Points;
     public BrokenLine(ArrayList<Point2D> Points)
     {
         this.Points = Points;
     }
 
+    public Iterator iterator()
+    {
+        return Points.listIterator();
+    }
     public String toString()
     {
         StringBuilder P = new StringBuilder();

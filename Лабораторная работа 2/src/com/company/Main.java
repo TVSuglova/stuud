@@ -111,9 +111,19 @@ public class Main
         //Пункт 6
         ArrayList<Point2D> points = new ArrayList<>();
         for (int i = 0; i < 10; i++)
-            points.add(new Point2D(new double[]{i, Math.random() * 10 + i}));
+            points.add(new Point2D(Math.random() * 10 - 5, Math.random() * 10 - 5));
         BrokenLine brokenLine = new BrokenLine(points);
         System.out.println(brokenLine);
+        System.out.println();
+
+        System.out.println("Проход прямо: ");
+        for (Object point : brokenLine)
+            System.out.println(point);
+        System.out.println("Проход обратно: ");
+        StringBuilder result = new StringBuilder();
+        for (Object point : brokenLine)
+            result.insert(0, point + "\r\n");
+        System.out.println(result);
     }
 
     static boolean balance(String s)
