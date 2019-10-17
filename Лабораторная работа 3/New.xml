@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<team>
+    <sportsman name="vasya" numberOfEvents="2" results="380"/>
+    <sportsman name="kolya" numberOfEvents="1" results="160"/>
+    <sportsman name="shura" numberOfEvents="2" results="400"/>
+    <sportsman name="katya" numberOfEvents="2" results="360"/>
+    <sportsman name="petya" numberOfEvents="2" results="380"/>
+    <sportsman name="alya" numberOfEvents="1" results="134"/>
+</team>

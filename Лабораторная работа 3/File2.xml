@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<team>
+    <sportsman name="vasya" birthday="1987-12-13" s="м">
+        <event place="казань" year="2003">
+            <result>200</result>
+            <award>gold</award>
+        </event>
+        <event place="москва" year="2002">
+            <result>180</result>
+            <award>silver</award>
+        </event>
+    </sportsman>
+    <sportsman name="kolya" birthday="1985-01-13" s="м">
+        <event place="казань" year="2003">
+            <result>160</result>
+            <award>bronze</award>
+        </event>
+    </sportsman>
+    <sportsman name="shura" birthday="1982-02-13" s="ж">
+        <event place="киев" year="2001">
+            <result>200</result>
+            <award>gold</award>
+        </event>
+        <event place="москва" year="2002">
+            <result>200</result>
+            <award>gold</award>
+        </event>
+    </sportsman>
+    <sportsman name="katya" birthday="2000-01-12" s="ж">
+        <event place="нижнекамск " year="2010">
+            <result>160</result>
+            <award>bronze</award>
+        </event>
+        <event place="альметьевск" year="2011">
+            <result>200</result>
+            <award>gold</award>
+        </event>
+    </sportsman>
+    <sportsman name="petya" birthday="2001-01-12" s="м">
+        <event place="бугульма " year="2015">
+            <result>200</result>
+            <award>gold</award>
+        </event>
+        <event place="минск" year="2017">
+            <result>180</result>
+            <award>silver</award>
+        </event>
+    </sportsman>
+</team>
