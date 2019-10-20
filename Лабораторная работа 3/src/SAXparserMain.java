@@ -30,7 +30,7 @@ public class SAXparserMain
                 writer.write(sportsman.toJSON());
                 if (sportsman != sportsmen.get(sportsmen.size() - 1))
                     writer.write("\n    },");
-                else writer.write("\n  }");
+                else writer.write("\n   }");
             }
             writer.write("\n}");
             writer.flush();
