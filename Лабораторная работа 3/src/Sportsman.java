@@ -7,7 +7,7 @@ public class Sportsman
 {
     private String name, s;
     private LocalDate birthday;
-    private ArrayList<Event> events;
+    ArrayList<Event> events;
 
     Sportsman(Node info)
     {
@@ -23,11 +23,27 @@ public class Sportsman
                 events.add(new Event(event.item(j)));
         }
     }
-
     Sportsman()
     {
     }
 
+    Sportsman(String name, String s, String birthday, ArrayList<Event> events)
+    {
+        this.name = name;
+        this.s = s;
+        String[] i = birthday.split("-");
+        this.birthday = LocalDate.of(Integer.parseInt(i[0]), Integer.parseInt(i[1]), Integer.parseInt(i[2]));
+        this.events = events;
+    }
+
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" ").append(birthday).append(" ").append(s).append("\n");
+        for (Event e : events)
+            sb.append(e.place).append(" ").append(e.year).append("\nРезультат: ").append(e.result).append(" ").append(e.award).append("\n");
+        return sb.toString();
+    }
     public String getS()
     {
         return s;
@@ -68,6 +84,20 @@ public class Sportsman
         this.events = events;
     }
 
+    public String toJSON()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n \"sportsmen\":\n  {\"name\":\"").append(name).append("\",\n").append("\n   \"birthday\":\"").append(birthday).append("\",\n").append("\n\"s\":\"").append(s).append("\",\n");
+        for (Event e : events)
+        {
+            if (e != events.get(events.size() - 1))
+                sb.append("\n   \"event\":\n{").append("\n    \"place\":\"").append(e.place).append("\",\n").append("\n    \"year\":\"").append(e.year).append("\",\n").append("\n    \"result\":\"").append(e.result).append("\",\n").append("\n    \"award\":\"").append(e.award).append("\"\n},");
+            else
+                sb.append("\n   \"event\":\n{").append("\n    \"place\":\"").append(e.place).append("\",\n").append("\n    \"year\":\"").append(e.year).append("\",\n").append("\n    \"result\":\"").append(e.result).append("\",\n").append("\n    \"award\":\"").append(e.award).append("\"\n}");
+        }
+        return sb.toString();
+    }
+
     static class Event
     {
         private String place, award;
@@ -89,6 +119,11 @@ public class Sportsman
         {
         }
 
+        Event(String place, String year)
+        {
+            this.place = place;
+            this.year = Integer.parseInt(year);
+        }
         public int getYear()
         {
             return year;
@@ -102,6 +137,11 @@ public class Sportsman
         public int getResult()
         {
             return result;
+        }
+
+        public String getAward()
+        {
+            return award;
         }
 
         public void setYear(int year)

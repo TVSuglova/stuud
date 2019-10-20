@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <authors>
-    <author FIO="А.С.Пушкин">
+    <author initials="А.С.Пушкин">
         <book name="Руслан и Людмила" numberOfPages="150"/>
         <book name="Сказка о рыбаке и рыбке" numberOfPages="25"/>
     </author>
-    <author FIO="Л.Н.Толстой">
+    <author initials="Л.Н.Толстой">
         <book name="Война и мир" numberOfPages="1000"/>
     </author>
 </authors>
