@@ -121,6 +121,43 @@ public class Main
             matcher.appendTail(sb);
             System.out.println(sb.length() == 0 ? string : sb);
         }
+        System.out.println();
+        //Задания под цифрами.
+        //MAC-адрес.
+        System.out.println("MAC-адрес: " + string.matches("([a-fA-F\\d]{2}:){5}[a-fA-F\\d]{2}"));
+        //Дата.
+        boolean ind = false;
+        String[] data = string.split("/");
+        if (data.length == 3 && data[2].matches("((1[6-9]\\d\\d)|([2-9]\\d\\d\\d" +
+                "))"))
+        {
+            if (data[0].matches("((0\\d)|([12]\\d)|(30))") && data[1].matches("((0[13-9])|(1[012]))"))
+                ind = true;
+            else if (data[0].matches("31") && data[1].matches("((0[469])|(11))"))
+                ind = true;
+            else if (data[1].matches("02") && data[0].matches("((0\\d)|([12]\\d))"))
+            {
+                if (data[0].matches("28"))
+                    ind = true;
+                else if (Integer.parseInt(data[2]) % 4 == 0 && Integer.parseInt(data[2]) % 100 == 0)
+                    ind = true;
+                else if (Integer.parseInt(data[2]) % 400 == 0)
+                    ind = true;
+            }
+        }
+        System.out.println("Дата: " + ind);
+        //E-mail адрес.
+        System.out.println("E-mail: " + string.matches("[-\\w.]+@[a-zA-Z\\d][-a-zA-Z\\d]{1,61}[a-zA-Z\\d]\\.[a-zA-Z]{2,63}"));
+        //IP адрес.
+        System.out.println("IP адрес: " + string.matches("(((2[0-5][0-5])|(1?[0-9]?[0-9]))\\.){3}((2[0-5][0-5])|(1?[0-9]?[0-9]))"));
+        //Шестизначное число без нулей в старшем разряде.
+        System.out.println("Шестизначное число без нулей в старших разрядах: " + string.matches("[1-9][0-9]{5}"));
+        //Проверка надежности пароля.
+        System.out.println("Надежный ли пароль: " + string.matches("(?=^\\w{8,}$)(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\w*$"));
+        //Есть ли в строке цифры, после которых не стоит "+".
+        System.out.println("Есть ли в строке цифры, после которых не стоит \"+\": " + string.matches("(?=^.*\\d+[^+]?).*$"));
+        //URL
+        System.out.println("URL: " + string.matches("(https?://)?(www\\.)?([a-zA-Z]([-a-zA-Z]){0,61}[a-zA-Z]\\.)*([a-zA-Z]([-a-zA-Z]){0,61}[a-zA-Z])(/.+)*((\\?\\w+=\\w+)(&\\w+=\\w+)*)?(#\\w+)?"));
     }
 }
 
