@@ -73,7 +73,7 @@ public class Main
         System.out.println("Пункт е:\n" + string.matches("#[A-F\\d]{8}"));
         System.out.println("Пункт ж:\n" + Arrays.toString(string.split(":*\\\\")));
         System.out.println("Пункт з:\n" + string.replaceAll("ик", ""));
-        {
+        /*{
             System.out.println("Пункт и:\n");
             ArrayList<Double> USD = new ArrayList<>(), RUR = new ArrayList<>(), EU = new ArrayList<>();
             pattern = Pattern.compile("\\d+(\\.\\d{1,2})?\\s?(USD|RUR|EU)");
@@ -120,7 +120,7 @@ public class Main
             }
             matcher.appendTail(sb);
             System.out.println(sb.length() == 0 ? string : sb);
-        }
+        }*/
         System.out.println();
         //Задания под цифрами.
         //MAC-адрес.
@@ -157,7 +157,7 @@ public class Main
         //Есть ли в строке цифры, после которых не стоит "+".
         System.out.println("Есть ли в строке цифры, после которых не стоит \"+\": " + string.matches("(?=^.*\\d+[^+]?).*$"));
         //URL
-        System.out.println("URL: " + string.matches("(https?://)?(www\\.)?([a-zA-Z]([-a-zA-Z]){0,61}[a-zA-Z]\\.)*([a-zA-Z]([-a-zA-Z]){0,61}[a-zA-Z])(/.+)*((\\?\\w+=\\w+)(&\\w+=\\w+)*)?(#\\w+)?"));
+        System.out.println("URL: " + string.matches("(https?://)?(www\\.)?([a-zA-Z]([-a-zA-Z]){0,61}[a-zA-Z]\\.)*([a-zA-Z]{2,63})(/.+)*((\\?\\w+=\\w+)(&\\w+=\\w+)*)?(#\\w+)?"));
     }
 }
 
