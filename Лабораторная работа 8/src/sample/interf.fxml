@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <tabs>
+        <Tab closable="false" style="-fx-background-color: #F0F8FF;" text="Прямая">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F0F8FF;">
+                    <children>
+                        <TextField fx:id="lineX1" layoutX="492.0" layoutY="39.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="x"/>
+                        <TextField fx:id="lineY1" layoutX="492.0" layoutY="76.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="y"/>
+                        <TextField fx:id="lineX2" layoutX="492.0" layoutY="149.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="x"/>
+                        <TextField fx:id="lineY2" layoutX="492.0" layoutY="186.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="y"/>
+                        <Label layoutX="491.0" layoutY="14.0" text="Начало:"/>
+                        <Label layoutX="495.0" layoutY="122.0" text="Конец:"/>
+                        <Button layoutX="492.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#newLine"
+                                prefHeight="25.0" prefWidth="85.0" text="Рисовать"/>
+                        <Canvas fx:id="canvasLine" height="327.0" layoutX="14.0" layoutY="22.0" width="438.0"/>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+        <Tab closable="false" style="-fx-background-color: #FFF5EE;" text="Прямоугольник">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFF5EE;">
+                    <children>
+                        <TextField fx:id="rectangleX" layoutX="492.0" layoutY="39.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="x"/>
+                        <TextField fx:id="rectangleY" layoutX="492.0" layoutY="76.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="y"/>
+                        <TextField fx:id="rectangleL" layoutX="492.0" layoutY="149.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="Длина"/>
+                        <TextField fx:id="rectangleW" layoutX="492.0" layoutY="186.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="Ширина"/>
+                        <Label layoutX="435.0" layoutY="13.0" prefHeight="0.0" prefWidth="136.0"
+                               text="Левая верхняя вершина:"/>
+                        <Button layoutX="492.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#newRectangle"
+                                prefHeight="25.0" prefWidth="85.0" text="Рисовать"/>
+                        <Canvas fx:id="canvasRectangle" height="329.0" layoutX="14.0" layoutY="21.0" width="410.0"/>
+                        <CheckBox fx:id="fillRectangle" layoutX="496.0" layoutY="258.0" mnemonicParsing="false"
+                                  text="Закрасить"/>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+        <Tab closable="false" style="-fx-background-color: #F0FFF0;" text="Эллипс">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F0FFF0;">
+                    <children>
+                        <Button layoutX="492.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#newEllipse"
+                                prefHeight="25.0" prefWidth="85.0" text="Рисовать"/>
+                        <Canvas fx:id="canvasEllipse" height="329.0" layoutX="14.0" layoutY="21.0" width="459.0"/>
+                        <TextField fx:id="ellipseX" layoutX="492.0" layoutY="39.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="x"/>
+                        <TextField fx:id="ellipseY" layoutX="492.0" layoutY="76.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="y"/>
+                        <TextField fx:id="ellipseL" layoutX="492.0" layoutY="149.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="Длина"/>
+                        <TextField fx:id="ellipseW" layoutX="492.0" layoutY="186.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="Ширина"/>
+                        <Label layoutX="492.0" layoutY="123.0" text="Радиусы:"/>
+                        <CheckBox fx:id="fillEllipse" layoutX="496.0" layoutY="258.0" mnemonicParsing="false"
+                                  text="Закрасить"/>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+        <Tab closable="false" style="-fx-background-color: #F5F5DC;" text="Треугольник">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5DC;">
+                    <children>
+                        <Button layoutX="492.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#newTriangle"
+                                prefHeight="25.0" prefWidth="85.0" text="Рисовать"/>
+                        <Canvas fx:id="canvasTriangle" height="329.0" layoutX="14.0" layoutY="21.0" width="425.0"/>
+                        <TextField fx:id="triangleX" layoutX="492.0" layoutY="103.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="x1; x2; x3"/>
+                        <TextField fx:id="triangleY" layoutX="492.0" layoutY="140.0" prefHeight="25.0" prefWidth="85.0"
+                                   promptText="y1; y2; y3"/>
+                        <Label layoutX="450.0" layoutY="46.0" prefHeight="50.0" prefWidth="136.0"
+                               text="Три координаты через точку с запятой:" wrapText="true"/>
+                        <CheckBox fx:id="fillTriangle" layoutX="496.0" layoutY="258.0" mnemonicParsing="false"
+                                  text="Закрасить"/>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+        <Tab style="-fx-background-color: #FFC0CB;" text="Кот">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFC0CB;">
+                    <children>
+                        <Button layoutX="492.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#newCat"
+                                prefHeight="25.0" prefWidth="85.0" text="Рисовать"/>
+                        <Canvas fx:id="canvasCat" height="329.0" layoutX="14.0" layoutY="21.0" width="465.0"/>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+        <Tab style="-fx-background-color: #F5F5F5;" text="Фрактальное дерево">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;">
+                    <children>
+                        <Canvas fx:id="canvasTree" height="329.0" layoutX="14.0" layoutY="21.0" rotate="180.0"
+                                width="430.0"/>
+                        <Button layoutX="457.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#newTree"
+                                prefHeight="25.0" prefWidth="120.0" text="Рисовать"/>
+                        <TextField fx:id="recursion" layoutX="457.0" layoutY="104.0" prefHeight="25.0" prefWidth="120.0"
+                                   promptText="Глубина рекурсии"/>
+                        <TextField fx:id="treeXY" layoutX="457.0" layoutY="142.0" prefHeight="25.0" prefWidth="120.0"
+                                   promptText="x ; y"/>
+                        <TextField fx:id="treeAngle" layoutX="457.0" layoutY="181.0" prefHeight="25.0" prefWidth="120.0"
+                                   promptText="Угол"/>
+                        <ColorPicker fx:id="treeColor" layoutX="457.0" layoutY="29.0" prefHeight="25.0"
+                                     prefWidth="119.0"/>
+                        <TextField fx:id="treeScale" layoutX="457.0" layoutY="221.0" prefHeight="25.0" prefWidth="120.0"
+                                   promptText="Масштаб"/>
+                        <CheckBox fx:id="varicoloredTree" layoutX="457.0" layoutY="62.0" mnemonicParsing="false"
+                                  text="Разноцветное"/>
+                    </children>
+                </Pane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
