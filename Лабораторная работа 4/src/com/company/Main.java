@@ -73,7 +73,7 @@ public class Main
         System.out.println("Пункт е:\n" + string.matches("#[A-F\\d]{8}"));
         System.out.println("Пункт ж:\n" + Arrays.toString(string.split(":*\\\\")));
         System.out.println("Пункт з:\n" + string.replaceAll("ик", ""));
-        /*{
+        {
             System.out.println("Пункт и:\n");
             ArrayList<Double> USD = new ArrayList<>(), RUR = new ArrayList<>(), EU = new ArrayList<>();
             pattern = Pattern.compile("\\d+(\\.\\d{1,2})?\\s?(USD|RUR|EU)");
@@ -120,7 +120,7 @@ public class Main
             }
             matcher.appendTail(sb);
             System.out.println(sb.length() == 0 ? string : sb);
-        }*/
+        }
         System.out.println();
         //Задания под цифрами.
         //MAC-адрес.
