@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#enterLogIn"
+          minHeight="200.0" minWidth="300.0" prefHeight="600.0" prefWidth="900.0" styleClass="background"
+          stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="meowland.Controller">
+    <columnConstraints>
+        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="306.0"
+                           prefWidth="375.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="75.0" prefWidth="75.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="50.0" prefWidth="141.0"/>
+        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="375.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="297.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="240.0" minHeight="32.0" prefHeight="56.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="25.0" minHeight="5.0" prefHeight="14.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="80.0" minHeight="32.0" prefHeight="56.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="40.0" prefHeight="163.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+        <TextField fx:id="loginField" maxWidth="400.0" prefHeight="32.0" prefWidth="342.0" onKeyPressed="#logInHandler"
+                   styleClass="id" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </TextField>
+        <PasswordField fx:id="passwordField" maxWidth="400.0" prefHeight="32.0" prefWidth="342.0"
+                       onKeyPressed="#PasswordHandler" styleClass="id" GridPane.columnIndex="2" GridPane.rowIndex="3"
+                       GridPane.valignment="TOP">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </PasswordField>
+        <Button fx:id="start" alignment="CENTER" minHeight="30.0" mnemonicParsing="false" onMouseClicked="#clickLogIn"
+                onKeyPressed="#enterLogIn" prefHeight="37.0" prefWidth="127.0" styleClass="id" text="Войти"
+                textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                GridPane.rowIndex="4" GridPane.valignment="TOP">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <GridPane.margin>
+                <Insets top="10.0"/>
+            </GridPane.margin>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </Button>
+        <ImageView fitHeight="207.0" fitWidth="486.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="4"
+                   GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <image>
+                <Image url="@../pictures/logo.png"/>
+            </image>
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+        </ImageView>
+        <Label mnemonicParsing="true" styleClass="id" text="Имя:" textOverrun="CLIP" wrapText="true"
+               GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"
+               GridPane.valignment="BOTTOM">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <GridPane.margin>
+                <Insets bottom="6.0" right="10.0"/>
+            </GridPane.margin>
+        </Label>
+        <Label styleClass="id" text="Пароль:" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
+               GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <GridPane.margin>
+                <Insets right="10.0" top="5.0"/>
+            </GridPane.margin>
+        </Label>
+    </children>
+</GridPane>

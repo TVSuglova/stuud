@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.lang.String?>
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#enterAddCustomer"
+         prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@style.css"
+         tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <tabs>
+        <Tab closable="false" styleClass="background" text="Журнал посетителей">
+            <content>
+                <GridPane styleClass="background">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="15.0" prefWidth="43.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="400.0"
+                                           prefWidth="699.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="25.0" prefWidth="45.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="90.0"
+                                           prefWidth="113.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="100.0" prefHeight="101.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="100.0" prefHeight="133.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="100.0" prefHeight="196.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="100.0" prefHeight="139.33334350585938" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Button id="addButton" minWidth="60.0" mnemonicParsing="false" onKeyPressed="#enterAddCustomer"
+                                onMouseClicked="#clickAddCustomer" prefHeight="65.0" prefWidth="65.0" text="+"
+                                textFill="#6e68da" GridPane.columnIndex="3" GridPane.halignment="LEFT"
+                                GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="63.0"/>
+                            </font>
+                            <padding>
+                                <Insets bottom="-20.0" left="-20.0" right="-20.0" top="-27.0"/>
+                            </padding>
+                            <GridPane.margin>
+                                <Insets top="15.0"/>
+                            </GridPane.margin>
+                        </Button>
+                        <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308"
+                                    maxWidth="1.7976931348623157E308" prefHeight="536.0" prefWidth="1001.0"
+                                    styleClass="background" vbarPolicy="ALWAYS" GridPane.columnIndex="1"
+                                    GridPane.rowSpan="4">
+                            <GridPane.margin>
+                                <Insets bottom="20.0" top="15.0"/>
+                            </GridPane.margin>
+                            <content>
+                                <VBox fx:id="list" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                      prefHeight="527.0" prefWidth="681.0"/>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab closable="false" styleClass="background" text="Журнал продаж и расходов">
+            <content>
+                <GridPane styleClass="background">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="40.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="255.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="200.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="200.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="40.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="116.0" minHeight="0.0" prefHeight="62.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="364.0" minHeight="10.0" prefHeight="364.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <TableView fx:id="currentTable" maxWidth="1.7976931348623157E308" prefHeight="200.0"
+                                   GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                                   GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="TOP">
+                            <placeholder>
+                                <Label text="За сегодня еще ничего нет"/>
+                            </placeholder>
+                            <columns>
+                                <TableColumn fx:id="tableCosts_1" prefWidth="140.0" text="Расходы/доходы"/>
+                                <TableColumn fx:id="tableCostsInfo_1" prefWidth="170.0" text="Информация"/>
+                                <TableColumn fx:id="tableValue_1" prefWidth="93.0" text="Сумма"/>
+                            </columns>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" right="10.0"/>
+                            </GridPane.margin>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                        <TableView fx:id="oldTable" maxWidth="1.7976931348623157E308" prefHeight="200.0"
+                                   prefWidth="408.0" GridPane.columnIndex="3" GridPane.columnSpan="2"
+                                   GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2"
+                                   GridPane.valignment="TOP">
+                            <placeholder>
+                                <Label text="Не удалось найти записи за эту дату"/>
+                            </placeholder>
+                            <columns>
+                                <TableColumn fx:id="tableCosts_2" prefWidth="140.0" text="Расходы/доходы"/>
+                                <TableColumn fx:id="tableCostsInfo_2" prefWidth="170.0" text="Информация"/>
+                                <TableColumn fx:id="tableValue_2" prefWidth="93.0" text="Сумма"/>
+                            </columns>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="10.0"/>
+                            </GridPane.margin>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                        <ComboBox fx:id="costs" editable="true" prefHeight="25.0" prefWidth="186.0" promptText="Расходы/доходы"
+                                  GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Зарплата"/>
+                                    <String fx:value="Продажа"/>
+                                    <String fx:value="Вода"/>
+                                    <String fx:value="Доставка"/>
+                                    <String fx:value="Другое"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <TextField fx:id="costsInfo" promptText="Заметка*" GridPane.columnIndex="2"/>
+                        <TextField fx:id="value" maxWidth="120.0" prefHeight="27.0" prefWidth="100.0" promptText="Сумма"
+                                   GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <GridPane.margin>
+                                <Insets/>
+                            </GridPane.margin>
+                        </TextField>
+                        <Button fx:id="addRow" mnemonicParsing="false" onKeyPressed="#enterAddCost"
+                                onMouseClicked="#clickAddCost" prefHeight="25.0" prefWidth="82.0" text="Добавить"
+                                GridPane.columnIndex="4"/>
+                        <Label fx:id="currentDate" text="CurrentDate" GridPane.columnIndex="1" GridPane.columnSpan="2"
+                               GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                            <GridPane.margin>
+                                <Insets bottom="10.0"/>
+                            </GridPane.margin>
+                        </Label>
+                        <Label fx:id="oldDate" text="OldDate" GridPane.columnIndex="3" GridPane.columnSpan="2"
+                               GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                            <GridPane.margin>
+                                <Insets bottom="10.0"/>
+                            </GridPane.margin>
+                        </Label>
+                        <DatePicker fx:id="datePicker" maxWidth="120.0" prefHeight="27.0" prefWidth="100.0"
+                                    promptText="Дата" GridPane.columnIndex="3" GridPane.halignment="CENTER"
+                                    GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+                        <Button mnemonicParsing="false" onKeyPressed="#enterGet" onMouseClicked="#clickGet"
+                                prefHeight="25.0" prefWidth="82.0" text="Показать" GridPane.columnIndex="4"
+                                GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+                    </children>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab styleClass="background" text="Статистика">
+            <content>
+                <GridPane prefHeight="570.0" prefWidth="900.0" styleClass="background">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0"
+                                           prefWidth="28.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" prefWidth="30.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="6.0" prefWidth="120.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="10.0" prefWidth="30.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="25.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="30.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="22.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="511.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0"
+                                           prefWidth="28.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="50.0" minHeight="4.0" prefHeight="43.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="89.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="64.0"
+                                        vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="257.0"
+                                        vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="50.0" minHeight="4.0" prefHeight="43.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="getChart" mnemonicParsing="false" onMouseClicked="#getChart" prefHeight="30.0"
+                                prefWidth="150.0" text="Построить график" GridPane.columnIndex="2"
+                                GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                            <GridPane.margin>
+                                <Insets/>
+                            </GridPane.margin>
+                        </Button>
+                        <DatePicker fx:id="startDate" promptText="Исходная дата" GridPane.columnIndex="2"
+                                    GridPane.rowIndex="1"/>
+                        <DatePicker fx:id="endDate" promptText="Конечная дата" GridPane.columnIndex="2"
+                                    GridPane.rowIndex="2" GridPane.valignment="TOP"/>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnIndex="1"
+                                    GridPane.columnSpan="3" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                            <content>
+                                <TableView fx:id="chartTable" maxHeight="1.7976931348623157E308"
+                                           maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="187.0">
+                                    <columns>
+                                        <TableColumn fx:id="dateCol" prefWidth="109.0" text="Дата"/>
+                                        <TableColumn fx:id="attendanceCol" prefWidth="88.0" text="Посещения"/>
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                                    </columnResizePolicy>
+                                </TableView>
+                            </content>
+                        </ScrollPane>
+                        <LineChart fx:id="chart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                   prefHeight="480.0" prefWidth="580.0" GridPane.columnIndex="5" GridPane.columnSpan="3"
+                                   GridPane.rowIndex="1" GridPane.rowSpan="5">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT"/>
+                            </yAxis>
+                        </LineChart>
+                        <ColorPicker fx:id="colorPicker" prefHeight="25.0" prefWidth="130.0" GridPane.columnIndex="2"
+                                     GridPane.rowIndex="3" GridPane.valignment="TOP"/>
+                        <CheckBox fx:id="instaChart" mnemonicParsing="false" prefHeight="30.0" prefWidth="194.0"
+                                  text="Статистика Instagram" GridPane.columnIndex="2" GridPane.columnSpan="3"
+                                  GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                            <GridPane.margin>
+                                <Insets left="2.0" top="20.0"/>
+                            </GridPane.margin>
+                        </CheckBox>
+                    </children>
+                </GridPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

@@ -1,0 +1,184 @@
+.background {
+    -fx-background-color: white;
+    -fx-border-color: #AFB1EE;
+}
+
+.id {
+    -fx-font: 11pt "Calibri";
+    -fx-text-fill: black;
+}
+
+.combo-box-base:focused, .button:focused, .text-field:focused {
+    -fx-focus-color: yellow;
+}
+
+.text-field {
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+    -fx-border-color: #AFB1EE;
+    -fx-border-radius: 15;
+}
+
+.text-field:focused {
+    -fx-prompt-text-fill: #C1C1C1;
+    -fx-background-color: -fx-focus-color, white;
+    -fx-background-radius: 15, 15, 15, 15;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.button {
+    -fx-background-color: linear-gradient(#C3C7F8, #A0A5F3);
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+}
+
+.button:focused {
+    -fx-background-color: -fx-focus-color, linear-gradient(#C3C7F8, #A0A5F3);
+    -fx-background-radius: 15, 15, 15, 15;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: #C9C9DA;
+}
+
+.combo-box {
+    -fx-background-color: linear-gradient(#D7D8EA, #C5C8FA);
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+}
+
+.combo-box-base {
+    -fx-background-color: linear-gradient(#D7D8EA, #C5C8FA);
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 15, 15, 15, 15;
+}
+
+.combo-box .arrow{
+    -fx-background-color: black
+}
+
+.combo-box .arrow-button{
+    -fx-background-color: linear-gradient(#D7D8EA, #C5C8FA);
+    -fx-background-radius: 15;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-selection-bar: #FFF77F;
+    -fx-selection-bar-text: black;
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:focused, .combo-box-popup .list-view .list-cell:hover {
+    -fx-selection-bar: #FFF77F;
+    -fx-text-fill: black;
+}
+
+.combo-box-base:focused {
+    -fx-background-color: #FFF77F, #FFF77F, linear-gradient(#D7D8EA, #C5C8FA);
+    -fx-background-radius: 15, 15, 15, 15;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.date-picker .arrow-button {
+   -fx-background-color: linear-gradient(#D7D8EA, #C5C8FA);
+   -fx-background-radius: 15;
+}
+
+.date-picker-popup .month-year-pane
+{
+   -fx-background-color: derive(#D7D8EA, 30%),
+           linear-gradient(to bottom, derive(#D7D8EA, -3%),
+                                      derive(#D7D8EA, 5%) 50%,
+                                      derive(#D7D8EA, -3%));
+}
+
+.date-picker-popup .day-cell:focused, .day-cell:hover {
+    -fx-background-color: #FFF77F, #FFF77F;
+    -fx-text-fill: black;
+}
+
+.date-picker-popup .previous-month:hover, .next-month:hover {
+    -fx-background-color: #D7D8EA, #D7D8EA;
+}
+
+.date-picker .arrow {
+    -fx-background-color: black
+}
+
+.titled-pane > .title {
+    -fx-background-color: #D7D8EA;
+    -fx-border-insets: 0, 1, 2;
+    -fx-border-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+    -fx-border-color: #AFB1EE;
+}
+
+.table-view {
+    -fx-border-radius: 15;
+    -fx-border-color: #AFB1EE;
+    -fx-base: white;
+    -fx-control-inner-background: white;
+    -fx-background-color: white;
+    -fx-table-cell-border-color: #AFB1EE;
+    -fx-table-header-border-color: #AFB1EE;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: white;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: white;
+    -fx-border-color:
+        #AFB1EE,
+        #AFB1EE,
+        #AFB1EE,
+        #AFB1EE;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 9pt;
+    -fx-font-family: "Calibri";
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color:  #FFF77F;
+    -fx-table-cell-border-color: #AFB1EE;
+    -fx-table-header-border-color: #AFB1EE;
+    -fx-text-fill: black;
+}
+
+.scroll-pane {
+   -fx-border-color: white;
+}
+
+.tab:hover, .tab:selected {
+   -fx-border-width: 2, 2;
+   -fx-border-color: #FFF77F, #FFF77F;
+   -fx-border-insets: 0 0 0 0, 0 0 0 0;
+}
+
+.tab:selected .focus-indicator {
+   -fx-border-color: white, white;
+   -fx-border-insets: -4 -4 -6 -5, -2 -2 -5 -3;
+}
+
+.chart-line-symbol {
+    -fx-background-radius: 4px;
+    -fx-padding: 2px;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 2px;
+}
