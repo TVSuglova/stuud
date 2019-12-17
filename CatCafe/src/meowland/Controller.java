@@ -3,6 +3,7 @@ package meowland;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,13 +18,15 @@ import javafx.stage.Stage;
 import meowland.database.Database;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
-public class Controller
+public class Controller implements Initializable
 {
     @FXML
     private Button start;
@@ -32,9 +35,7 @@ public class Controller
     @FXML
     private PasswordField passwordField;
 
-    private String url = "jdbc:mysql://localhost/catcafe?serverTimezone=Europe/Moscow&useSSL=false";
-    private String username = "root", password = "****";
-    Database database = new Database(url, username, password);
+    public Database database;
 
 
     @FXML
@@ -121,5 +122,13 @@ public class Controller
             default:
                 keyEvent.consume();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        String url = "jdbc:mysql://localhost/catcafe?serverTimezone=Europe/Moscow&useSSL=false";
+        String username = "root", password = "Tan4iK56!";
+        database = new Database(url, username, password);
     }
 }

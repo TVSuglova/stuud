@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.Font?>
+<?import java.lang.String?>
 <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#enterAddCustomer"
          prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@style.css"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -117,8 +118,19 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                             </columnResizePolicy>
                         </TableView>
-                        <ComboBox fx:id="costs" editable="true" prefHeight="25.0" prefWidth="186.0" promptText="Расходы"
-                                  GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+                        <ComboBox fx:id="costs" editable="true" prefHeight="25.0" prefWidth="186.0"
+                                  promptText="Расходы/доходы"
+                                  GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Зарплата"/>
+                                    <String fx:value="Продажа"/>
+                                    <String fx:value="Вода"/>
+                                    <String fx:value="Доставка"/>
+                                    <String fx:value="Другое"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
                         <TextField fx:id="costsInfo" promptText="Заметка*" GridPane.columnIndex="2"/>
                         <TextField fx:id="value" maxWidth="120.0" prefHeight="27.0" prefWidth="100.0" promptText="Сумма"
                                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -130,7 +142,7 @@
                             </GridPane.margin>
                         </TextField>
                         <Button fx:id="addRow" mnemonicParsing="false" onKeyPressed="#enterAddCost"
-                                onMouseClicked="#addCost" prefHeight="25.0" prefWidth="82.0" text="Добавить"
+                                onMouseClicked="#clickAddCost" prefHeight="25.0" prefWidth="82.0" text="Добавить"
                                 GridPane.columnIndex="4"/>
                         <Label fx:id="currentDate" text="CurrentDate" GridPane.columnIndex="1" GridPane.columnSpan="2"
                                GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">

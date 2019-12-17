@@ -20,6 +20,7 @@ import meowland.database.Costs;
 import meowland.database.Database;
 import meowland.database.DayStatistics;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -40,6 +41,10 @@ public class WorkspaceController implements Initializable
     @FXML
     private Label currentDate, oldDate;
     @FXML
+    private TextField costsInfo, value;
+    @FXML
+    private ComboBox<String> costs;
+    @FXML
     private DatePicker startDate, endDate, datePicker;
     @FXML
     private TableView<DayStatistics> chartTable;
@@ -53,7 +58,6 @@ public class WorkspaceController implements Initializable
     private CheckBox instaChart;
 
     private Main main = new Main();
-
     private String table;
     Database database;
 
@@ -63,13 +67,13 @@ public class WorkspaceController implements Initializable
     }
 
     @FXML
-    private void clickAddCustomer(MouseEvent mouseEvent) throws Exception
+    private void clickAddCustomer(MouseEvent mouseEvent) throws IOException
     {
         addCustomer();
     }
 
     @FXML
-    private void enterAddCustomer(KeyEvent keyEvent) throws Exception
+    private void enterAddCustomer(KeyEvent keyEvent) throws IOException
     {
         if (keyEvent.getCode() == KeyCode.ENTER)
         {
@@ -77,7 +81,7 @@ public class WorkspaceController implements Initializable
         }
     }
 
-    private void addCustomer() throws Exception
+    private void addCustomer() throws IOException
     {
         GroupOfCustomer groupOfCustomer = new GroupOfCustomer();
         boolean clicked = main.showDialogWindow(groupOfCustomer);
@@ -115,10 +119,25 @@ public class WorkspaceController implements Initializable
                 {
                     boolean clicked1 = main.showApplyingWindow(groupOfCustomer);
                     if (clicked1)
-                        list.getChildren().remove(titledPane);
-                } catch (Exception e)
+                        if (groupOfCustomer.getTime() != 0)
+                        {
+                            database.setTable(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yy")));
+                            String[] values = {groupOfCustomer.getStartTimeString(), groupOfCustomer.getEndTimeString(),
+                                    Integer.toString(groupOfCustomer.getNumber()), Integer.toString(groupOfCustomer.getSale()),
+                                    Integer.toString(groupOfCustomer.getCost())};
+                            database.insert(values);
+                            list.getChildren().remove(titledPane);
+                        } else
+                        {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setContentText("Нельзя рассчитать человека, который провел в кафе меньше минуты");
+                            alert.show();
+                        }
+                } catch (IOException e)
                 {
-                    e.printStackTrace();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Ошибка загрузки");
+                    alert.show();
                 }
             });
         }
@@ -200,12 +219,29 @@ public class WorkspaceController implements Initializable
         }
     }
 
-    public void enterAddCost(KeyEvent keyEvent)
+    @FXML
+    private void enterAddCost(KeyEvent keyEvent)
     {
+        if (keyEvent.getCode().equals(KeyCode.ENTER))
+        {
+            addCost();
+        }
     }
 
-    public void addCost(MouseEvent mouseEvent)
+    @FXML
+    private void clickAddCost(MouseEvent mouseEvent)
     {
+        addCost();
+    }
+
+    public void addCost()
+    {
+        database.setTable("costs");
+        String[] values = {table, costs.getValue(), costsInfo.getText(), value.getText()};
+        database.insert(values);
+
+        currentTable.getItems().add(new Costs(costs.getValue(), costsInfo.getText(), Integer.parseInt(value.getText())));
+        currentTable.refresh();
     }
 
     @FXML
@@ -256,22 +292,25 @@ public class WorkspaceController implements Initializable
         tableValue_1.setCellValueFactory(new PropertyValueFactory<>("sum"));
         tableValue_2.setCellValueFactory(new PropertyValueFactory<>("sum"));
 
-        ObservableList<Costs> list = FXCollections.observableArrayList();
+        ObservableList<Costs> list1 = FXCollections.observableArrayList();
         database.setTable("costs");
         String[] columnKeys = {"reason", "information", "sum"};
 
         ArrayList<String> results = database.get("date", table, columnKeys);
         currentDate.setText(table);
+        currentTable.getItems().clear();
 
         if (results != null)
         {
             for (int i = 0; i < results.size(); i += 3)
             {
-                list.add(new Costs(results.get(i), results.get(i + 1), Integer.parseInt(results.get(i + 2))));
+                list1.add(new Costs(results.get(i), results.get(i + 1), Integer.parseInt(results.get(i + 2))));
             }
-            currentTable.setItems(list);
-            list.clear();
+            currentTable.setItems(list1);
         }
+
+        ObservableList<Costs> list2 = FXCollections.observableArrayList();
+        results = null;
 
         for (int i = 1; results == null; i++)
         {
@@ -280,8 +319,8 @@ public class WorkspaceController implements Initializable
         }
         for (int i = 0; i < results.size(); i += 3)
         {
-            list.add(new Costs(results.get(i), results.get(i + 1), Integer.parseInt(results.get(i + 2))));
+            list2.add(new Costs(results.get(i), results.get(i + 1), Integer.parseInt(results.get(i + 2))));
         }
-        oldTable.setItems(list);
+        oldTable.setItems(list2);
     }
 }

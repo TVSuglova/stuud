@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Main extends Application
 {
 
@@ -37,7 +39,7 @@ public class Main extends Application
         controller.database.close();
     }
 
-    public boolean showDialogWindow(GroupOfCustomer groupOfCustomer) throws Exception
+    public boolean showDialogWindow(GroupOfCustomer groupOfCustomer) throws IOException
     {
         if (dialogStage == null)
         {
@@ -57,7 +59,7 @@ public class Main extends Application
         return controller.isClicked();
     }
 
-    public boolean showApplyingWindow(GroupOfCustomer groupOfCustomer) throws Exception
+    public boolean showApplyingWindow(GroupOfCustomer groupOfCustomer) throws IOException
     {
         if (applyingStage == null)
         {

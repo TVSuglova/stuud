@@ -1,7 +1,9 @@
 package meowland;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -21,26 +23,34 @@ public class GroupOfCustomer
     {
     }
 
-    public GroupOfCustomer(String info, int number, String sale, String timer, LocalDateTime startTime, LocalDateTime endTime)
+    public GroupOfCustomer(String startTimeString, String endTimeString, int time, int sale, int cost)
+    {
+        this.startTime = LocalDateTime.of(LocalDate.now(), LocalTime.parse(startTimeString, dateTimeFormatter));
+        this.startTimeString = startTimeString;
+        this.endTime = LocalDateTime.of(LocalDate.now(), LocalTime.parse(endTimeString, dateTimeFormatter));
+        this.endTimeString = endTimeString;
+        this.sale = sale;
+        this.time = time;
+        this.cost = cost;
+        this.number = 1;
+    }
+
+    public GroupOfCustomer(LocalDateTime startTime, LocalDateTime endTime, String sale, int number)
     {
         this.startTime = startTime;
         this.endTime = endTime;
-        this.startTimeString = dateTimeFormatter.format(startTime);
-        this.endTimeString = dateTimeFormatter.format(endTime);
-
-        this.info = info;
         this.number = number;
-        this.timer = timer;
-
         switch (sale)
         {
             case "нет/заполнить позже":
             case "нет":
+            case "0":
             {
                 this.sale = 0;
                 break;
             }
             case "именинник - бесплатно":
+            case "100":
             {
                 this.sale = 100;
                 break;
@@ -54,28 +64,6 @@ public class GroupOfCustomer
                 break;
             }
         }
-
-        time = 0;
-        time += (endTime.getHour() - startTime.getHour()) * 60;
-        time += endTime.getMinute() - startTime.getMinute();
-        if (endTime.getDayOfWeek().equals(DayOfWeek.SUNDAY) || endTime.getDayOfWeek().equals(DayOfWeek.SATURDAY))
-        {
-            if (time <= 30)
-                cost = holidayPrice[0];
-            else if (time <= 60)
-                cost = holidayPrice[1];
-            else
-                cost = holidayPrice[1] + (time - 60) * holidayPrice[2];
-        } else
-        {
-            if (time <= 30)
-                cost = weekdaysPrice[0];
-            else if (time <= 60)
-                cost = weekdaysPrice[1];
-            else
-                cost = weekdaysPrice[1] + (time - 60) * weekdaysPrice[2];
-        }
-        cost = cost - cost * this.sale / 100;
     }
 
     public String getStartTimeString()
@@ -190,6 +178,24 @@ public class GroupOfCustomer
     public void setSale(int sale)
     {
         this.sale = sale;
+        if (endTime.getDayOfWeek().equals(DayOfWeek.SUNDAY) || endTime.getDayOfWeek().equals(DayOfWeek.SATURDAY))
+        {
+            if (time <= 30)
+                cost = holidayPrice[0];
+            else if (time <= 60)
+                cost = holidayPrice[1];
+            else
+                cost = holidayPrice[1] + (time - 60) * holidayPrice[2];
+        } else
+        {
+            if (time <= 30)
+                cost = weekdaysPrice[0];
+            else if (time <= 60)
+                cost = weekdaysPrice[1];
+            else
+                cost = weekdaysPrice[1] + (time - 60) * weekdaysPrice[2];
+        }
+        cost = cost - cost * sale / 100;
     }
 
     public void setSale(String sale)
@@ -198,11 +204,13 @@ public class GroupOfCustomer
         {
             case "нет/заполнить позже":
             case "нет":
+            case "0":
             {
                 this.sale = 0;
                 break;
             }
             case "именинник - бесплатно":
+            case "100":
             {
                 this.sale = 100;
                 break;

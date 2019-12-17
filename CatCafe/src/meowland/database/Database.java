@@ -6,6 +6,8 @@ import java.io.Closeable;
 import java.sql.*;
 import java.util.ArrayList;
 
+// Class for working with database MySQL, not absolutely universal.
+
 public class Database implements Closeable
 {
     private Connection connection;
@@ -35,14 +37,14 @@ public class Database implements Closeable
             this.table = table;
             statement.execute("CREATE TABLE IF NOT EXISTS `" + table + "` (" +
                     "  `Id` INT NOT NULL AUTO_INCREMENT, `StartTime` VARCHAR(5) NOT NULL, `EndTime` VARCHAR(5) NOT NULL," +
-                    "  `Number` INT(3) NULL DEFAULT 1,  `Sale` INT(2) NULL DEFAULT 0,  `Price` INT(5) NOT NULL," +
+                    "  `Number` INT(3) NULL DEFAULT 1,  `Sale` INT(2) NULL DEFAULT NULL,  `Price` INT(5) NOT NULL," +
                     "  UNIQUE INDEX `Id_UNIQUE` (`Id` ASC) VISIBLE,  PRIMARY KEY (`Id`));");
             resultSet = statement.executeQuery("SELECT * FROM `" + table + "`;");
             countColumns = resultSet.getMetaData().getColumnCount();
         } catch (SQLException e)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Ошибка связи с таблицей");
+            alert.setContentText("Ошибка базы данных");
             alert.show();
         }
     }
@@ -65,7 +67,10 @@ public class Database implements Closeable
             return sb.toString();
         } catch (SQLException ex)
         {
-            return ex.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
+            return null;
         }
     }
 
@@ -139,7 +144,9 @@ public class Database implements Closeable
             }
         } catch (Exception ex)
         {
-            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
         }
     }
 
@@ -169,7 +176,9 @@ public class Database implements Closeable
             }
         } catch (Exception ex)
         {
-            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
         }
     }
 
@@ -180,7 +189,9 @@ public class Database implements Closeable
             statement.executeUpdate("UPDATE " + table + " SET `" + columnName + "` = '" + value + "' WHERE (`" + columnKey + "` = '" + key + "');");
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
         }
     }
 
@@ -191,7 +202,9 @@ public class Database implements Closeable
             statement.executeUpdate("DELETE FROM " + table + " WHERE `" + columnKey + "` = '" + key + "';");
         } catch (SQLException e)
         {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
         }
     }
 
@@ -202,7 +215,9 @@ public class Database implements Closeable
             statement.executeUpdate(query);
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
         }
     }
 
@@ -215,7 +230,9 @@ public class Database implements Closeable
             connection.close();
         } catch (SQLException e)
         {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
         }
     }
 }

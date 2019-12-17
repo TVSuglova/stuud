@@ -1,9 +1,13 @@
 package meowland.database;
 
+import javafx.scene.control.Alert;
+import meowland.GroupOfCustomer;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -15,18 +19,17 @@ public class ReadDataTab
 {
     public static void main(String[] args)
     {
+    }
+
+    public static void readInDatabase(Database database, String filename)
+    {
         try
         {
-            XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream("Таблица Котокафе октябрь-декабрь.xlsx"));
+            XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(filename));
             XSSFSheet sheet;
 
-            String url = "jdbc:mysql://localhost/catcafe?serverTimezone=Europe/Moscow&useSSL=false";
-            String username = "root", password = "****";
-            Database database;
-            //FileWriter writer;
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d.M.yy H:m");
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-            //GroupOfCustomer groupOfCustomer;
             LocalDateTime end;
             LocalDateTime start;
             int number;
@@ -42,7 +45,6 @@ public class ReadDataTab
                         sheet.getRow(2).getCell(1).getNumericCellValue() == 0)
                     continue;
 
-                database = new Database(url, username, password);
                 database.setTable(sheet.getSheetName().replace(" ", ""));
 
                 for (int j = 2; j <= sheet.getLastRowNum(); j++)
@@ -76,16 +78,39 @@ public class ReadDataTab
                     insert[4] = Integer.toString(price);
                     database.insert(insert);
                 }
-                database.close();
             }
+        } catch (IOException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка считывания таблицы");
+            alert.show();
+        }
+    }
 
-            /*for (int i = 0; i < wb.getNumberOfSheets(); i++)
+    public static void readInFile(String filename)
+    {
+        try
+        {
+            XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream("Таблица Котокафе октябрь-декабрь.xlsx"));
+            XSSFSheet sheet;
+
+            FileWriter writer;
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d.M.yy H:m");
+            GroupOfCustomer groupOfCustomer;
+            LocalDateTime end;
+            LocalDateTime start;
+            int number;
+            String sale;
+            Pattern pattern;
+            Matcher matcher;
+
+            for (int i = 0; i < wb.getNumberOfSheets(); i++)
             {
                 sheet = wb.getSheetAt(i);
                 if (!sheet.getSheetName().matches("\\s*\\d+\\.\\d+\\.\\d+\\s*") ||
                         sheet.getRow(2).getCell(1).getNumericCellValue() == 0)
                     continue;
-                writer = new FileWriter(sheet.getSheetName().replace(" ", "")+".txt");
+                writer = new FileWriter(sheet.getSheetName().replace(" ", "") + ".txt");
                 for (int j = 2; j <= sheet.getLastRowNum(); j++)
                 {
                     if (sheet.getRow(j).getCell(0).getNumericCellValue() == 0 ||
@@ -93,30 +118,32 @@ public class ReadDataTab
                         break;
 
                     start = LocalDateTime.parse(sheet.getSheetName().replace(" ", "") + " " +
-                            (int)sheet.getRow(j).getCell(1).getNumericCellValue() + ":"
-                            +(int)sheet.getRow(j).getCell(2).getNumericCellValue(), dateTimeFormatter);
+                            (int) sheet.getRow(j).getCell(1).getNumericCellValue() + ":"
+                            + (int) sheet.getRow(j).getCell(2).getNumericCellValue(), dateTimeFormatter);
                     end = LocalDateTime.parse(sheet.getSheetName().replace(" ", "") + " " +
-                            (int)sheet.getRow(j).getCell(3).getNumericCellValue() + ":"
-                            +(int)sheet.getRow(j).getCell(4).getNumericCellValue(), dateTimeFormatter);
+                            (int) sheet.getRow(j).getCell(3).getNumericCellValue() + ":"
+                            + (int) sheet.getRow(j).getCell(4).getNumericCellValue(), dateTimeFormatter);
 
                     pattern = Pattern.compile("\\d+");
                     matcher = pattern.matcher(sheet.getRow(j).getCell(7).getStringCellValue());
                     number = 1;
                     if (matcher.find())
-                        number = sheet.getRow(j).getCell(7).getStringCellValue().matches("\\d+ ч.*")?
-                                Integer.parseInt(matcher.group()): 1;
+                        number = sheet.getRow(j).getCell(7).getStringCellValue().matches("\\d+ ч.*") ?
+                                Integer.parseInt(matcher.group()) : 1;
 
-                    sale = sheet.getRow(j).getCell(7).getStringCellValue().matches(".*10%?.*")? "10": null;
+                    sale = sheet.getRow(j).getCell(7).getStringCellValue().matches(".*10%?.*") ? "10" : null;
 
-                    groupOfCustomer = new GroupOfCustomer(null, number, sale, null, start, end);
+                    groupOfCustomer = new GroupOfCustomer(start, end, sale, number);
                     writer.write(groupOfCustomer.toString());
                     writer.append("\n");
                 }
                 writer.close();
-            }*/
-        } catch (Exception e)
+            }
+        } catch (IOException e)
         {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка считывания таблицы");
+            alert.show();
         }
     }
 }

@@ -21,18 +21,20 @@ import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// Class for parsing and saving information from Instagram and Excel tables.
 
-public class DataFormat
+public class StatisticsData
 {
     public static void main(String[] args)
     {
+    }
+
+    public static void readFromTableToDatabase(Database database, String filename)
+    {
         try
         {
-            XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream("Таблица Котокафе октябрь-декабрь.xlsx"));
+            XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(filename));
             XSSFSheet sheet;
-            String url = "jdbc:mysql://localhost/catcafe?serverTimezone=Europe/Moscow&useSSL=false";
-            String username = "root", password = "****";
-            Database database = new Database(url, username, password);
             database.setTable("statistics");
 
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d.M.yy H:m");
