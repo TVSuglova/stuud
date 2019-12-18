@@ -159,6 +159,10 @@
     -fx-text-fill: black;
 }
 
+.table-row-cell:selected .text, .table-row-cell:filled:focused:selected .text {
+    -fx-fill: black;
+}
+
 .scroll-pane {
    -fx-border-color: white;
 }

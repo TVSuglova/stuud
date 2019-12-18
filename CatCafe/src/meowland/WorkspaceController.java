@@ -146,6 +146,14 @@ public class WorkspaceController implements Initializable
     @FXML
     private void getChart(MouseEvent mouseEvent)
     {
+        if (startDate.getValue() == null || endDate.getValue() == null)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Выберите временной промежуток");
+            alert.show();
+            return;
+        }
+
         chart.getData().clear();
         chartTable.getItems().clear();
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
