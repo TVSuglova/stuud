@@ -27,7 +27,10 @@ public class Main extends Application
         Parent root = loader.load();
         controller = loader.getController();
         primaryStage.setTitle("Meowland");
-        primaryStage.getIcons().add(new Image("file:icon.png"));
+        primaryStage.getIcons().addAll(
+                new Image(getClass().getResourceAsStream("pictures/icon32x32.png")),
+                new Image(getClass().getResourceAsStream("pictures/icon48x48.png")),
+                new Image(getClass().getResourceAsStream("pictures/icon64x64.png")));
         primaryStage.setScene(new Scene(root, 900, 600));
         Main.primaryStage = primaryStage;
         primaryStage.show();
@@ -47,6 +50,10 @@ public class Main extends Application
             Parent root = loader.load();
             dialogStage = new Stage();
             dialogStage.setTitle("Анкета посетителей");
+            dialogStage.getIcons().addAll(
+                    new Image(getClass().getResourceAsStream("pictures/icon32x32.png")),
+                    new Image(getClass().getResourceAsStream("pictures/icon48x48.png")),
+                    new Image(getClass().getResourceAsStream("pictures/icon64x64.png")));
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             dialogStage.setScene(new Scene(root, 700, 200));
@@ -67,6 +74,10 @@ public class Main extends Application
             Parent root = loader1.load();
             applyingStage = new Stage();
             applyingStage.setTitle("Итог");
+            applyingStage.getIcons().addAll(
+                    new Image(getClass().getResourceAsStream("pictures/icon32x32.png")),
+                    new Image(getClass().getResourceAsStream("pictures/icon48x48.png")),
+                    new Image(getClass().getResourceAsStream("pictures/icon64x64.png")));
             applyingStage.initModality(Modality.WINDOW_MODAL);
             applyingStage.initOwner(primaryStage);
             applyingStage.setScene(new Scene(root, 700, 500));

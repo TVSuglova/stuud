@@ -1,4 +1,4 @@
-package meowland;
+package meowland.network;
 
 public class Matrix
 {

@@ -18,6 +18,7 @@ import meowland.database.Costs;
 import meowland.database.Database;
 import meowland.database.DayStatistics;
 import meowland.database.StatisticsData;
+import meowland.network.Network;
 
 import java.io.IOException;
 import java.net.URL;

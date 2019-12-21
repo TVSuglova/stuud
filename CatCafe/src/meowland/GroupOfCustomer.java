@@ -2,6 +2,7 @@ package meowland;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.time.DayOfWeek;
@@ -188,7 +189,7 @@ public class GroupOfCustomer
                     {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setContentText("У клиента(ов) " + info + " " + number + " человек(а) " + " заканчивается время");
-                        alert.setGraphic(new ImageView("file:icon.png"));
+                        alert.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("pictures/warning.png"))));
                         alert.show();
                         myTimer.cancel();
                         myTimer.purge();

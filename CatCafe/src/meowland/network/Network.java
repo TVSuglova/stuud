@@ -1,4 +1,4 @@
-package meowland;
+package meowland.network;
 
 import javafx.scene.control.Alert;
 import org.apache.commons.lang3.ArrayUtils;
