@@ -1,10 +1,16 @@
 package meowland;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 // Class for storing information about customers.
@@ -13,10 +19,10 @@ import java.time.format.DateTimeFormatter;
 public class GroupOfCustomer
 {
 
-    private String startTimeString = null, endTimeString = null, info = null, timer = null;
+    private String startTimeString = null, endTimeString = null, info = null;
     private LocalDateTime startTime, endTime;
     private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-    private int number, sale, time, cost;
+    private int number, sale, time, timer, cost;
     private int[] holidayPrice = {80, 150, 2}, weekdaysPrice = {100, 180, 2};
 
     public GroupOfCustomer()
@@ -70,7 +76,6 @@ public class GroupOfCustomer
     {
         return startTimeString;
     }
-
     public void setStartTimeString(LocalDateTime startTime)
     {
         this.startTimeString = dateTimeFormatter.format(startTime);
@@ -80,7 +85,6 @@ public class GroupOfCustomer
     {
         return endTimeString;
     }
-
     public void setEndTimeString(LocalDateTime endTime)
     {
         this.endTimeString = dateTimeFormatter.format(endTime);
@@ -90,7 +94,6 @@ public class GroupOfCustomer
     {
         return startTime;
     }
-
     public void setStartTime(LocalDateTime startTime)
     {
         this.startTime = startTime;
@@ -101,7 +104,6 @@ public class GroupOfCustomer
     {
         return endTime;
     }
-
     public void setEndTime(LocalDateTime endTime)
     {
         this.endTime = endTime;
@@ -134,7 +136,6 @@ public class GroupOfCustomer
     {
         return number;
     }
-
     public void setNumber(int number)
     {
         this.number = number;
@@ -144,27 +145,64 @@ public class GroupOfCustomer
     {
         return info;
     }
-
     public void setInfo(String info)
     {
         this.info = info;
     }
 
-    public String getTimer()
+    public int getTimer()
     {
         return timer;
     }
 
     public void setTimer(String timer)
     {
-        this.timer = timer;
+        switch (timer)
+        {
+            case "не напоминать":
+            {
+                this.timer = 0;
+                break;
+            }
+            case "час":
+            {
+                this.timer = 60;
+                break;
+            }
+            case "пол часа":
+            {
+                this.timer = 30;
+                break;
+            }
+        }
+
+        if (this.timer != 0)
+        {
+            Timer myTimer = new Timer();
+            TimerTask timerTask = new TimerTask()
+            {
+                @Override
+                public void run()
+                {
+                    Platform.runLater(() ->
+                    {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setContentText("У клиента(ов) " + info + " " + number + " человек(а) " + " заканчивается время");
+                        alert.setGraphic(new ImageView("file:icon.png"));
+                        alert.show();
+                        myTimer.cancel();
+                        myTimer.purge();
+                    });
+                }
+            };
+            myTimer.schedule(timerTask, (this.timer - 5) * 60 * 1000);
+        }
     }
 
     public int getTime()
     {
         return time;
     }
-
     public void setTime(int time)
     {
         this.time = time;
@@ -174,7 +212,6 @@ public class GroupOfCustomer
     {
         return sale;
     }
-
     public void setSale(int sale)
     {
         this.sale = sale;
@@ -197,7 +234,6 @@ public class GroupOfCustomer
         }
         cost = cost - cost * sale / 100;
     }
-
     public void setSale(String sale)
     {
         switch (sale)
@@ -230,7 +266,6 @@ public class GroupOfCustomer
     {
         return cost;
     }
-
     public void setCost(int cost)
     {
         this.cost = cost;

@@ -41,42 +41,11 @@ public class DialogWindowController
     }
 
     @FXML
-    private void save(MouseEvent mouseEvent)
+    private void clickSave(MouseEvent mouseEvent)
     {
         if (check())
         {
-            groupOfCustomer.setInfo(info.getText());
-            groupOfCustomer.setSale(sale.getValue());
-            groupOfCustomer.setTimer(sale.getValue());
-            groupOfCustomer.setNumber(Integer.parseInt(number.getText()));
-            groupOfCustomer.setStartTime(LocalDateTime.now());
-
-            clicked = true;
-            stage.close();
-
-            info.clear();
-            number.clear();
-            timer.getSelectionModel().clearSelection();
-            timer.setButtonCell(new ListCell<>()
-            {
-                @Override
-                protected void updateItem(String item, boolean empty)
-                {
-                    super.updateItem(item, empty);
-                    setText(item);
-                }
-            });
-            sale.getSelectionModel().clearSelection();
-            sale.setButtonCell(new ListCell<>()
-            {
-                @Override
-                protected void updateItem(String item, boolean empty)
-                {
-                    super.updateItem(item, empty);
-                    setText(item);
-                }
-            });
-            info.requestFocus();
+            save();
         }
     }
 
@@ -85,39 +54,44 @@ public class DialogWindowController
     {
         if (keyEvent.getCode() == KeyCode.ENTER && check())
         {
-            groupOfCustomer.setInfo(info.getText());
-            groupOfCustomer.setSale(sale.getValue());
-            groupOfCustomer.setTimer(sale.getValue());
-            groupOfCustomer.setNumber(Integer.parseInt(number.getText()));
-            groupOfCustomer.setStartTime(LocalDateTime.now());
-
-            clicked = true;
-            stage.close();
-
-            info.clear();
-            number.clear();
-            timer.getSelectionModel().clearSelection();
-            timer.setButtonCell(new ListCell<>()
-            {
-                @Override
-                protected void updateItem(String item, boolean empty)
-                {
-                    super.updateItem(item, empty);
-                    setText(item);
-                }
-            });
-            sale.getSelectionModel().clearSelection();
-            sale.setButtonCell(new ListCell<>()
-            {
-                @Override
-                protected void updateItem(String item, boolean empty)
-                {
-                    super.updateItem(item, empty);
-                    setText(item);
-                }
-            });
-            info.requestFocus();
+            save();
         }
+    }
+
+    private void save()
+    {
+        groupOfCustomer.setInfo(info.getText());
+        groupOfCustomer.setSale(sale.getValue());
+        groupOfCustomer.setTimer(timer.getValue());
+        groupOfCustomer.setNumber(Integer.parseInt(number.getText()));
+        groupOfCustomer.setStartTime(LocalDateTime.now());
+
+        clicked = true;
+        stage.close();
+
+        info.clear();
+        number.clear();
+        timer.getSelectionModel().clearSelection();
+        timer.setButtonCell(new ListCell<>()
+        {
+            @Override
+            protected void updateItem(String item, boolean empty)
+            {
+                super.updateItem(item, empty);
+                setText(item);
+            }
+        });
+        sale.getSelectionModel().clearSelection();
+        sale.setButtonCell(new ListCell<>()
+        {
+            @Override
+            protected void updateItem(String item, boolean empty)
+            {
+                super.updateItem(item, empty);
+                setText(item);
+            }
+        });
+        info.requestFocus();
     }
 
     private boolean check()
@@ -128,9 +102,9 @@ public class DialogWindowController
                 number.setText("1");
             Integer.parseInt(number.getText());
             if (info.getText().equals(""))
-                info.setText("Посетители " + number.getText() + " человек(а)");
+                info.setText("Посетители");
             if (sale.getValue() == null)
-                sale.setValue("нет");
+                sale.setValue("нет/заполнить позже");
             if (timer.getValue() == null)
                 timer.setValue("не напоминать");
             return true;

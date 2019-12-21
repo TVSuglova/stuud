@@ -37,6 +37,7 @@ public class Main extends Application
     public void stop()
     {
         controller.database.close();
+        System.exit(0);
     }
 
     public boolean showDialogWindow(GroupOfCustomer groupOfCustomer) throws IOException

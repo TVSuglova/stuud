@@ -49,7 +49,7 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <Button mnemonicParsing="false" onKeyPressed="#enterSave" onMouseClicked="#save" prefHeight="25.0"
+        <Button mnemonicParsing="false" onKeyPressed="#enterSave" onMouseClicked="#clickSave" prefHeight="25.0"
                 prefWidth="101.0" text="Засечь время" GridPane.columnIndex="5" GridPane.halignment="CENTER"
                 GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
             <GridPane.margin>

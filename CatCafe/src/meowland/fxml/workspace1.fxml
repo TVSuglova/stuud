@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -10,6 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import java.lang.*?>
+
 <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#enterAddCustomer"
          prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@style.css"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -192,7 +197,7 @@
                         <RowConstraints maxHeight="89.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES"/>
                         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="64.0"
                                         vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="257.0"
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="200.0" prefHeight="257.0"
                                         vgrow="SOMETIMES"/>
                         <RowConstraints maxHeight="50.0" minHeight="4.0" prefHeight="43.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
@@ -249,6 +254,15 @@
                                 <Insets left="2.0" top="20.0"/>
                             </GridPane.margin>
                         </CheckBox>
+                        <Label text="Прогноз на ближайшие дни:" GridPane.columnIndex="1" GridPane.columnSpan="3"
+                               GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                            <GridPane.margin>
+                                <Insets bottom="20.0"/>
+                            </GridPane.margin>
+                        </Label>
+                        <Label fx:id="predictions" text="Сначала постройте график" GridPane.columnIndex="1"
+                               GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="5"
+                               GridPane.valignment="BOTTOM"/>
                     </children>
                 </GridPane>
             </content>
