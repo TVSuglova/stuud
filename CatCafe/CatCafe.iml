@@ -12,5 +12,8 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="jar_files (1)" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.18" level="project" />
+    <orderEntry type="library" name="libtensorflow-1.14.0" level="project" />
+    <orderEntry type="library" name="dl4j-core" level="project" />
+    <orderEntry type="library" name="Jama-1.0.3" level="project" />
   </component>
 </module>

@@ -128,7 +128,7 @@ public class Controller implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         String url = "jdbc:mysql://localhost/catcafe?serverTimezone=Europe/Moscow&useSSL=false";
-        String username = "root", password = "Tan4iK56!";
+        String username = "root", password = "****";
         database = new Database(url, username, password);
     }
 }

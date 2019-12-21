@@ -52,7 +52,7 @@
                 </TableView>
             </content>
         </ScrollPane>
-        <Button fx:id="apply" onMouseClicked="#clickApply" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0"
+        <Button onMouseClicked="#clickApply" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0"
                 text="Ок" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="5"
                 GridPane.valignment="TOP"/>
         <Button fx:id="cancelApplying" onMouseClicked="#chancel" mnemonicParsing="false" prefHeight="30.0"

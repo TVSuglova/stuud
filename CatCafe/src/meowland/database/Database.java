@@ -74,6 +74,80 @@ public class Database implements Closeable
         }
     }
 
+    public boolean isThereTable(String table)
+    {
+        try
+        {
+            resultSet = statement.executeQuery("SELECT * FROM `" + table + "`;");
+            resultSet.next();
+            return resultSet != null;
+        } catch (SQLException e)
+        {
+            return false;
+        }
+    }
+
+    public String getLastRowCell(String table, String columnKey)
+    {
+        try
+        {
+            resultSet = statement.executeQuery("SELECT " + columnKey + " FROM `" + table + "`;");
+            while (resultSet.next() && resultSet != null)
+            {
+                if (resultSet.isLast())
+                    return resultSet.getString(columnKey);
+            }
+            return null;
+        } catch (SQLException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных lastcell");
+            alert.show();
+            return null;
+        }
+    }
+
+    public int getCountOfRows(String table)
+    {
+        try
+        {
+            resultSet = statement.executeQuery("SELECT COUNT(*) FROM `" + table + "`;");
+            resultSet.next();
+            return resultSet.getInt(0);
+        } catch (SQLException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных");
+            alert.show();
+            return 0;
+        }
+    }
+
+    public ArrayList<String> getAll(String columnKey)
+    {
+        try
+        {
+            ArrayList<String> list = new ArrayList<>();
+            resultSet = statement.executeQuery("SELECT `" + columnKey + "` FROM `" + table + "`;");
+            while (resultSet.next())
+            {
+                System.out.println(resultSet.getString(columnKey));
+                list.add(resultSet.getString(columnKey));
+            }
+
+            if (list.size() == 0)
+                return null;
+
+            return list;
+        } catch (SQLException ex)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Ошибка базы данных getall");
+            alert.show();
+            return null;
+        }
+    }
+
     public String get(String knownColumnKey, String key, String columnKey)
     {
         try
