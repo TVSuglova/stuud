@@ -166,8 +166,7 @@ public class StatisticsData
                 .build();
         StatelessInsta client = new Instagram(httpClient);
         client.basePage();
-
-        PageObject<Media> medias = client.getMedias("kotokafe_meowland", 2);
+        PageObject<Media> medias = client.getMedias("kotokafe_meowland", 1);
         Collection<Media> mediaList = medias.getNodes();
 
         LocalDate localDate = LocalDate.now();
@@ -215,7 +214,10 @@ public class StatisticsData
                 int countOfClients = 0;
                 ArrayList<String> list = database.getAll("Number");
                 if (list == null)
+                {
+                    localDate = localDate.minusDays(1);
                     continue;
+                }
                 for (String n : list)
                     countOfClients += Integer.parseInt(n);
 

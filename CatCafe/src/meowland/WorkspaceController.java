@@ -260,14 +260,15 @@ public class WorkspaceController implements Initializable
         } catch (ExecutionException | InterruptedException e)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Что-то пошло не так");
-            alert.show();
-        } catch (Exception e)
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Не удается получить данные для прогноза\n Проверьте интернет-соединение");
             alert.show();
             predictions.setText("Не удается получить данные для прогноза");
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Что-то пошло не так");
+            alert.show();
         }
     }
 
