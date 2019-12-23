@@ -1,7 +1,6 @@
 package meowland.network;
 
 import javafx.scene.control.Alert;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,8 +29,8 @@ public class Network
             Double[] y = new Double[out.toArray().length];
             out.toArray(y);
 
-            System.out.println(Arrays.toString(teach(inp, ArrayUtils.toPrimitive(y), n)));
-            System.out.println(Arrays.toString(predictionError(ArrayUtils.toPrimitive(y), inp)));
+            System.out.println(Arrays.toString(teach(inp, array(y), n)));
+            System.out.println(Arrays.toString(predictionError(array(y), inp)));
             //System.out.println(Arrays.toString(predict(inp)));
         } catch (IOException e)
         {
@@ -39,6 +38,14 @@ public class Network
             alert.setContentText("Не удалось найти файл");
             alert.show();
         }
+    }
+
+    public double[] array(Double[] d)
+    {
+        double[] doubles = new double[d.length];
+        for (int i = 0; i < d.length; i++)
+            doubles[i] = d[i];
+        return doubles;
     }
 
     public double predict(double[] inp)
