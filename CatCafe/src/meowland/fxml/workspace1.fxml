@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#enterAddCustomer"
-         prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@style.css"
-         tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0"
+         styleClass="background" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
         <Tab closable="false" styleClass="background" text="Журнал посетителей">
             <content>
-                <GridPane styleClass="background">
+                <GridPane styleClass="background" onKeyPressed="#enterAddCustomer">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="15.0" prefWidth="43.0"/>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="400.0"
@@ -261,6 +261,62 @@
                         <Label fx:id="predictions" text="Сначала постройте график" GridPane.columnIndex="1"
                                GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="5"
                                GridPane.valignment="BOTTOM"/>
+                    </children>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab styleClass="background" text="Настройки">
+            <content>
+                <GridPane styleClass="background">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="30.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                           prefWidth="30.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <PasswordField fx:id="mainPassword" onKeyPressed="#mainPasswordHandler"
+                                       promptText="Пароль главного администратора" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="1"/>
+                        <TextField fx:id="newAdminLogin" onKeyPressed="#newAdminLoginHandler"
+                                   promptText="Логин новго администратора" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="2"/>
+                        <PasswordField fx:id="newAdminPassword" onKeyPressed="#newAdminPasswordHandler"
+                                       promptText="Пароль нового администратора" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="2" GridPane.valignment="BOTTOM"/>
+                        <Button fx:id="addAdmin" mnemonicParsing="false" onKeyPressed="#enterAddNewAdmin"
+                                onMouseClicked="#clickAddNewAdmin" text="Добавить" GridPane.columnIndex="1"
+                                GridPane.halignment="CENTER" GridPane.rowIndex="3"/>
+                        <Label text="Регистрация нового администратора" GridPane.columnIndex="1"
+                               GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+                        <Label text="Смена пароля" GridPane.columnIndex="3" GridPane.halignment="CENTER"
+                               GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+                        <TextField fx:id="changeLogin" onKeyPressed="#changeLoginHandler" promptText="Имя пользователя"
+                                   GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                        <PasswordField fx:id="oldPassword" onKeyPressed="#oldPasswordHandler" promptText="Старый пароль"
+                                       GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.valignment="BOTTOM"/>
+                        <PasswordField fx:id="newPassword" onKeyPressed="#newPasswordHandler" promptText="Новый пароль"
+                                       GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM"/>
+                        <Button fx:id="changePass" mnemonicParsing="false" onKeyPressed="#enterChangePassword"
+                                onMouseClicked="#clickChangePassword" text="Изменить" GridPane.columnIndex="3"
+                                GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
+                        <Button fx:id="ok" mnemonicParsing="false" onKeyPressed="#okHandler"
+                                onMouseClicked="#clickCheckAdmin" text="Ок" GridPane.columnIndex="1"
+                                GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM"/>
                     </children>
                 </GridPane>
             </content>

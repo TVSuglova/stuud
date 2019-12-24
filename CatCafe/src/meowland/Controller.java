@@ -48,9 +48,7 @@ public class Controller implements Initializable
     private void enterLogIn(KeyEvent keyEvent)
     {
         if (keyEvent.getCode() == KeyCode.ENTER)
-        {
             logIn(keyEvent);
-        }
     }
 
     private void logIn(Event event)

@@ -210,7 +210,6 @@ public class Database implements Closeable
                     sb.append("'").append(values[i]).append("',");
                 sb.append("'").append(values[i]).append("');");
 
-                System.out.println(sb.toString());
                 statement.executeUpdate(sb.toString());
             } else
             {
@@ -242,7 +241,6 @@ public class Database implements Closeable
                     sb.append("'").append(values[i]).append("',");
                 sb.append("'").append(values[i]).append("');");
 
-                System.out.println(sb.toString());
                 statement.executeUpdate(sb.toString());
             } else
             {

@@ -22,6 +22,9 @@ import meowland.network.Network;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,7 +45,7 @@ public class WorkspaceController implements Initializable
     @FXML
     private Label currentDate, oldDate, predictions;
     @FXML
-    private TextField costsInfo, value;
+    private TextField costsInfo, value, newAdminLogin, changeLogin;
     @FXML
     private ComboBox<String> costs;
     @FXML
@@ -57,6 +60,10 @@ public class WorkspaceController implements Initializable
     private ColorPicker colorPicker;
     @FXML
     private CheckBox instaChart;
+    @FXML
+    private PasswordField mainPassword, newAdminPassword, oldPassword, newPassword;
+    @FXML
+    private Button addAdmin, ok, changePass;
 
     private Main main = new Main();
     private String table;
@@ -78,9 +85,7 @@ public class WorkspaceController implements Initializable
     private void enterAddCustomer(KeyEvent keyEvent) throws IOException
     {
         if (keyEvent.getCode() == KeyCode.ENTER)
-        {
             addCustomer();
-        }
     }
 
     private void addCustomer() throws IOException
@@ -276,9 +281,7 @@ public class WorkspaceController implements Initializable
     private void enterAddCost(KeyEvent keyEvent)
     {
         if (keyEvent.getCode().equals(KeyCode.ENTER))
-        {
             addCost();
-        }
     }
 
     @FXML
@@ -307,9 +310,7 @@ public class WorkspaceController implements Initializable
     private void enterGet(KeyEvent keyEvent)
     {
         if (keyEvent.getCode() == KeyCode.ENTER)
-        {
             get();
-        }
     }
 
     private void get()
@@ -329,6 +330,342 @@ public class WorkspaceController implements Initializable
             }
             oldTable.setItems(list);
         } else oldTable.getItems().clear();
+    }
+
+    @FXML
+    private void clickCheckAdmin(MouseEvent mouseEvent)
+    {
+        checkAdmin();
+    }
+
+    private void checkAdmin()
+    {
+        try
+        {
+            database.setTable("users");
+            MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
+            byte[] mdBytes = mdigest.digest(mainPassword.getText().getBytes(StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            for (byte mdByte : mdBytes)
+            {
+                String s = Integer.toHexString(0xff & mdByte);
+                s = (s.length() == 1) ? "0" + s : s;
+                sb.append(s);
+            }
+
+            if (database.get("Name", "Марина", "Password") != null &&
+                    database.get("Name", "Марина", "Password").equals(sb.toString()))
+            {
+                addAdmin.setDisable(false);
+                newAdminLogin.setDisable(false);
+                newAdminPassword.setDisable(false);
+            } else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Неверный пароль главного администратора");
+                alert.show();
+            }
+        } catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void clickAddNewAdmin(MouseEvent mouseEvent)
+    {
+        addNewAdmin();
+    }
+
+    @FXML
+    private void enterAddNewAdmin(KeyEvent keyEvent)
+    {
+        if (keyEvent.getCode() == KeyCode.ENTER)
+            addNewAdmin();
+    }
+
+    private void addNewAdmin()
+    {
+        try
+        {
+            database.setTable("users");
+            MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
+            byte[] mdBytes = mdigest.digest(newAdminPassword.getText().getBytes(StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            for (byte mdByte : mdBytes)
+            {
+                String s = Integer.toHexString(0xff & mdByte);
+                s = (s.length() == 1) ? "0" + s : s;
+                sb.append(s);
+            }
+            if (database.get("Name", newAdminLogin.getText(), "Password") == null)
+            {
+                String[] values = {newAdminLogin.getText(), sb.toString(), null};
+                database.insert(values);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Новый администратор " + newAdminLogin.getText() + " успешно добавлен");
+                alert.show();
+                newAdminLogin.clear();
+                newAdminPassword.clear();
+                mainPassword.clear();
+            } else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Логин " + newAdminLogin.getText() + " уже существует в системе");
+                alert.show();
+            }
+
+        } catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void clickChangePassword(MouseEvent mouseEvent)
+    {
+        changePassword();
+    }
+
+    @FXML
+    private void enterChangePassword(KeyEvent keyEvent)
+    {
+        if (keyEvent.getCode() == KeyCode.ENTER)
+            changePassword();
+    }
+
+    @FXML
+    private void changePassword()
+    {
+        try
+        {
+            database.setTable("users");
+            MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
+            byte[] mdBytes = mdigest.digest(oldPassword.getText().getBytes(StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            for (byte mdByte : mdBytes)
+            {
+                String s = Integer.toHexString(0xff & mdByte);
+                s = (s.length() == 1) ? "0" + s : s;
+                sb.append(s);
+            }
+            if (database.get("Name", changeLogin.getText(), "Password") != null &&
+                    database.get("Name", changeLogin.getText(), "Password").equals(sb.toString()))
+            {
+                mdBytes = mdigest.digest(newPassword.getText().getBytes(StandardCharsets.UTF_8));
+                sb = new StringBuilder();
+                for (byte mdByte : mdBytes)
+                {
+                    String s = Integer.toHexString(0xff & mdByte);
+                    s = (s.length() == 1) ? "0" + s : s;
+                    sb.append(s);
+                }
+                database.set("Password", sb.toString(), "Name", changeLogin.getText());
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Пароль пользователя " + changeLogin.getText() + " успешно изменен");
+                alert.show();
+                changeLogin.clear();
+                oldPassword.clear();
+                newPassword.clear();
+            } else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Неверный логин или пароль");
+                alert.show();
+            }
+
+        } catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void mainPasswordHandler(KeyEvent keyEvent)
+    {
+        switch (keyEvent.getCode())
+        {
+            case DOWN:
+            {
+                ok.requestFocus();
+                break;
+            }
+            case RIGHT:
+            {
+                changeLogin.requestFocus();
+                break;
+            }
+            case UP:
+            case LEFT:
+                break;
+            default:
+                keyEvent.consume();
+        }
+    }
+
+    @FXML
+    private void okHandler(KeyEvent keyEvent)
+    {
+        switch (keyEvent.getCode())
+        {
+            case ENTER:
+            {
+                checkAdmin();
+            }
+            case DOWN:
+            {
+                if (!newAdminLogin.isDisable())
+                    newAdminLogin.requestFocus();
+                break;
+            }
+            case RIGHT:
+            {
+                changeLogin.requestFocus();
+                break;
+            }
+            case UP:
+            {
+                mainPassword.requestFocus();
+                break;
+            }
+            case LEFT:
+                break;
+            default:
+                keyEvent.consume();
+        }
+    }
+
+    @FXML
+    private void newAdminLoginHandler(KeyEvent keyEvent)
+    {
+        switch (keyEvent.getCode())
+        {
+            case DOWN:
+            {
+                newAdminPassword.requestFocus();
+                break;
+            }
+            case RIGHT:
+            {
+                changeLogin.requestFocus();
+                break;
+            }
+            case UP:
+            {
+                ok.requestFocus();
+                break;
+            }
+            case LEFT:
+                break;
+            default:
+                keyEvent.consume();
+        }
+    }
+
+    @FXML
+    private void newAdminPasswordHandler(KeyEvent keyEvent)
+    {
+        switch (keyEvent.getCode())
+        {
+            case DOWN:
+            {
+                addAdmin.requestFocus();
+                break;
+            }
+            case RIGHT:
+            {
+                changeLogin.requestFocus();
+                break;
+            }
+            case UP:
+            {
+                newAdminLogin.requestFocus();
+                break;
+            }
+            case LEFT:
+                break;
+            default:
+                keyEvent.consume();
+        }
+    }
+
+    @FXML
+    private void changeLoginHandler(KeyEvent keyEvent)
+    {
+        switch (keyEvent.getCode())
+        {
+            case DOWN:
+            {
+                oldPassword.requestFocus();
+                break;
+            }
+            case LEFT:
+            {
+                mainPassword.requestFocus();
+                break;
+            }
+            case UP:
+            case RIGHT:
+                break;
+            default:
+                keyEvent.consume();
+        }
+    }
+
+    @FXML
+    private void oldPasswordHandler(KeyEvent keyEvent)
+    {
+        switch (keyEvent.getCode())
+        {
+            case DOWN:
+            {
+                newPassword.requestFocus();
+                break;
+            }
+            case LEFT:
+            {
+                mainPassword.requestFocus();
+                break;
+            }
+            case UP:
+            {
+                changeLogin.requestFocus();
+                break;
+            }
+            case RIGHT:
+                break;
+            default:
+                keyEvent.consume();
+        }
+    }
+
+    @FXML
+    private void newPasswordHandler(KeyEvent keyEvent)
+    {
+        switch (keyEvent.getCode())
+        {
+            case DOWN:
+            {
+                changePass.requestFocus();
+                break;
+            }
+            case LEFT:
+            {
+                mainPassword.requestFocus();
+                break;
+            }
+            case UP:
+            {
+                oldPassword.requestFocus();
+                break;
+            }
+            case RIGHT:
+                break;
+            default:
+                keyEvent.consume();
+        }
     }
 
     @Override
@@ -375,5 +712,9 @@ public class WorkspaceController implements Initializable
             list2.add(new Costs(results.get(i), results.get(i + 1), Integer.parseInt(results.get(i + 2))));
         }
         oldTable.setItems(list2);
+
+        addAdmin.setDisable(true);
+        newAdminLogin.setDisable(true);
+        newAdminPassword.setDisable(true);
     }
 }

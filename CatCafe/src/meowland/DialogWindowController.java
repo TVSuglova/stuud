@@ -44,18 +44,14 @@ public class DialogWindowController
     private void clickSave(MouseEvent mouseEvent)
     {
         if (check())
-        {
             save();
-        }
     }
 
     @FXML
     private void enterSave(KeyEvent keyEvent)
     {
         if (keyEvent.getCode() == KeyCode.ENTER && check())
-        {
             save();
-        }
     }
 
     private void save()
